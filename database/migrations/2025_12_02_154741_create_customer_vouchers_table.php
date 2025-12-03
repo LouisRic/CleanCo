@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('laundry_order_id')->nullable()->constrained('laundry_orders')->onDelete('set null');
 
             $table->boolean('is_redeemed')->default(false);
-            $table->date('redeemed_at')->nullable();
+            $table->datetime('redeemed_at')->nullable();
 
             $table->date('expired_at')->nullable();
 

@@ -26,8 +26,8 @@ return new class extends Migration
             $table->text('notes')->nullable();
 
             $table->enum('payment_status', ['paid', 'unpaid'])->default('unpaid');
-            $table->enum('laundry_status', ['process', 'washed', 'ready', 'taken'])->default('process');
-            $table->enum('pickup_status', ['not_taken', 'taken'])->default('not_taken');
+            $table->enum('laundry_status', ['process', 'washed', 'ready', 'completed'])->default('process');
+            $table->enum('pickup_status', ['pending', 'picked_up'])->default('pending');
 
             $table->timestamps();
         });
