@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
             $table->foreignId('laundry_type_id')->constrained('laundry_types')->onDelete('restrict');
+            $table->foreignId('voucher_id')->nullable()->constrained('vouchers')->onDelete('set null');
 
             $table->date('order_date');
             $table->date('pickup_date')->nullable();
