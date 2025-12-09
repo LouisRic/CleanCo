@@ -1,0 +1,71 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-image {
+    background-image: url('https://images.unsplash.com/photo-1545173168-9f1947eebb8f?q=80&w=1000&auto=format&fit=crop');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.bg-form {
+    background-color: #dbebf6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-input {
+    border: 2px solid #ff914d;
+    border-radius: 50px;
+    padding: 12px 20px;
+    color: #666;
+}
+
+.custom-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 145, 77, 0.25);
+    border-color: #ff914d;
+}
+
+.btn-orange {
+    background-color: #ff7f00;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 40px;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s;
+}
+
+.btn-orange:hover {
+    background-color: #e67300;
+    color: white;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+.custom-radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.custom-radio-group .form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.custom-radio-group .form-check-label {
+    font-size: 1rem;
+    line-height: 1.2em;
+}
