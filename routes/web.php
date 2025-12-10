@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LaundryTypeController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function() {
@@ -21,5 +22,9 @@ Route::prefix('admin')->group(function() {
     Route::get('transactions/{id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
     Route::put('transactions/{id}', [TransactionController::class, 'update'])->name('transactions.update');
     Route::delete('transactions/{id}', [TransactionController::class, 'destroy'])->name('transactions.delete');
+
+    // Reports
+    Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('reports/{id}', [ReportController::class, 'show'])->name('reports.show');
 
 });

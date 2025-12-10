@@ -32,7 +32,7 @@
         </a>
 
         {{-- Reports --}}
-        <a href="{{ url('/admin/reports') }}"
+        <a href="{{ route('reports.index') }}"
            class="sidebar-link {{ request()->is('admin/reports*') ? 'active' : '' }}">
             📄 Reports
         </a>
