@@ -14,7 +14,7 @@
         </a>
 
         {{-- Customer Data --}}
-        <a href="{{ url('/admin/customers') }}"
+        <a href="{{ route('customers.index') }}"
            class="sidebar-link {{ request()->is('admin/customers*') ? 'active' : '' }}">
             👥 Customer Data
         </a>

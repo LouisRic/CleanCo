@@ -12,6 +12,11 @@ class Account extends Model
     protected $guarded = [];
     protected $hidden = ['password'];
 
+    public function getPointsBalanceAttribute()
+    {
+        return $value ?? 0;
+    }
+
     public function laundryOrders()
     {
         return $this->hasMany(LaundryOrder::class);
