@@ -1,0 +1,18 @@
+[33m99e040b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32msharlene/admin/dashboard_customerData[m[33m, [m[1;31morigin/sharlene/admin/services_transactions_reports[m[33m, [m[1;32msharlene/admin/services_transactions_reports[m[33m)[m HEAD@{0}: checkout: moving from sharlene/admin/services_transactions_reports to sharlene/admin/dashboard_customerData
+[33m99e040b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32msharlene/admin/dashboard_customerData[m[33m, [m[1;31morigin/sharlene/admin/services_transactions_reports[m[33m, [m[1;32msharlene/admin/services_transactions_reports[m[33m)[m HEAD@{1}: reset: moving to HEAD~1
+[33m6064537[m HEAD@{2}: reset: moving to HEAD
+[33m6064537[m HEAD@{3}: commit: Add Dashboard and Customer Data
+[33m99e040b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32msharlene/admin/dashboard_customerData[m[33m, [m[1;31morigin/sharlene/admin/services_transactions_reports[m[33m, [m[1;32msharlene/admin/services_transactions_reports[m[33m)[m HEAD@{4}: Branch: renamed refs/heads/sharlene-feature-services-and-transactions to refs/heads/sharlene/admin/services_transactions_reports
+[33m99e040b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32msharlene/admin/dashboard_customerData[m[33m, [m[1;31morigin/sharlene/admin/services_transactions_reports[m[33m, [m[1;32msharlene/admin/services_transactions_reports[m[33m)[m HEAD@{6}: commit: Edit transaction, add reports
+[33m875210d[m[33m ([m[1;31morigin/sharlene-feature-services-and-transactions[m[33m)[m HEAD@{7}: commit: Add services CRUD & transactions module
+[33m4e1e5ea[m[33m ([m[1;31morigin/sharlene-migrations[m[33m, [m[1;32msharlene-migrations[m[33m, [m[1;32msharlene-feature-services[m[33m)[m HEAD@{8}: checkout: moving from sharlene-feature-services to sharlene-feature-services-and-transactions
+[33m4e1e5ea[m[33m ([m[1;31morigin/sharlene-migrations[m[33m, [m[1;32msharlene-migrations[m[33m, [m[1;32msharlene-feature-services[m[33m)[m HEAD@{9}: checkout: moving from sharlene-feature-services to sharlene-feature-services
+[33m4e1e5ea[m[33m ([m[1;31morigin/sharlene-migrations[m[33m, [m[1;32msharlene-migrations[m[33m, [m[1;32msharlene-feature-services[m[33m)[m HEAD@{10}: reset: moving to HEAD
+[33m4e1e5ea[m[33m ([m[1;31morigin/sharlene-migrations[m[33m, [m[1;32msharlene-migrations[m[33m, [m[1;32msharlene-feature-services[m[33m)[m HEAD@{11}: checkout: moving from sharlene-migrations to sharlene-feature-services
+[33m4e1e5ea[m[33m ([m[1;31morigin/sharlene-migrations[m[33m, [m[1;32msharlene-migrations[m[33m, [m[1;32msharlene-feature-services[m[33m)[m HEAD@{12}: commit: update migrations and models
+[33md578f14[m HEAD@{13}: checkout: moving from sharlene-migrations to sharlene-migrations
+[33md578f14[m HEAD@{14}: commit: update migrations and models
+[33m629de68[m HEAD@{15}: commit: Add migrations
+[33mbd3dd73[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m, [m[1;32mfeature/migrations[m[33m)[m HEAD@{16}: checkout: moving from feature/migrations to sharlene-migrations
+[33mbd3dd73[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m, [m[1;32mfeature/migrations[m[33m)[m HEAD@{17}: checkout: moving from main to feature/migrations
+[33mbd3dd73[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m, [m[1;32mfeature/migrations[m[33m)[m HEAD@{18}: clone: from https://github.com/LouisRic/CleanCo.git

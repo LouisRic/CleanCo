@@ -12,8 +12,10 @@ Route::prefix('admin')->group(function () {
     Route::prefix('services')->group(function () {
         // Services
         Route::get('', [LaundryTypeController::class, 'index'])->name('services.index');
+        Route::get('create', [LaundryTypeController::class, 'create'])->name('services.create');
         Route::post('store', [LaundryTypeController::class, 'store'])->name('services.store');
         Route::put('{id}/update', [LaundryTypeController::class, 'update'])->name('services.update');
+        Route::get('{id}/edit', [LaundryTypeController::class, 'edit'])->name('services.edit');
         Route::delete('{id}/delete', [LaundryTypeController::class, 'destroy'])->name('services.delete');
     });
 

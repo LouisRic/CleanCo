@@ -28,7 +28,13 @@ class LaundryTypeController extends Controller
             'price_per_kg' => $request->price_per_kg,
         ]);
 
-        return redirect()->back()->with('success', 'Laundry Type added successfully');
+        return redirect()->route('services.index')->with('success', 'Laundry Type added successfully');
+    }
+
+    public function create()
+    {
+        $laundryTypes = LaundryType::all();
+        return view('admin.services.create');
     }
 
     public function update(Request $request, $id)
@@ -47,7 +53,13 @@ class LaundryTypeController extends Controller
             'price_per_kg' => $request->price_per_kg,
         ]);
 
-        return redirect()->back()->with('success', 'Laundry Type added successfully');
+        return redirect()->route('services.index')->with('success', 'Laundry Type added successfully');
+    }
+
+    public function edit($id)
+    {
+        $laundryType = LaundryType::findOrFail($id);
+        return view('admin.services.edit', compact('laundryType'));
     }
 
     public function destroy($id)
