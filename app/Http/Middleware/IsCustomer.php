@@ -16,11 +16,14 @@ class IsCustomer
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::check()){
+        if ($request->routeIs('verification.*')) {
+            return $next($request);
+        }
+        if (!Auth::check()) {
             return redirect()->route('login');
         }
 
-        if(Auth::user()->role !== 'customer'){
+        if (Auth::user()->role !== 'customer') {
             return redirect()->route('admin.dashboard');
         }
         return $next($request);

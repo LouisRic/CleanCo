@@ -24,9 +24,36 @@
             </ul>
 
             <div class="d-flex gap-2">
-                <button class="btn-secondary">Login</button>
-                <button class="btn-primary">Register</button>
+
+                @guest
+                    <a href="{{ route('login') }}">
+                        <button class="btn-secondary">Login</button>
+                    </a>
+
+                    <a href="{{ route('register') }}">
+                        <button class="btn-primary">Register</button>
+                    </a>
+                @endguest
+
+                @auth
+                    @if (Auth::user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}">
+                            <button class="btn-primary">Admin Dashboard</button>
+                        </a>
+                    @else
+                        <a href="{{ route('customer.dashboard') }}">
+                            <button class="btn-primary">My Dashboard</button>
+                        </a>
+                    @endif
+
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn-secondary">Logout</button>
+                    </form>
+                @endauth
+
             </div>
+
         </div>
     </div>
 </nav>
