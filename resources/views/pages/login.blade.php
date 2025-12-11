@@ -19,24 +19,26 @@
             @csrf
 
             @if ($errors->any())
-            <div class="alert alert-danger p-2 mb-3 small text-start">
-                Email or password is wrong!
-            </div>
+                <div class="alert alert-danger p-2 mb-3 small text-start">
+                    Email or password is wrong!
+                </div>
             @endif
 
             <div class="mb-3">
-                <input type="email" name="email" class="form-control custom-login-input @error('email') is-invalid @enderror"
-                    placeholder="Email" required value="{{ old('email') }}">
+                <input type="email" name="email"
+                    class="form-control custom-login-input @error('email') is-invalid @enderror" placeholder="Email"
+                    required value="{{ old('email') }}">
                 @error('email')
-                <div class="invalid-feedback text-start ms-4">{{ $message }}</div>
+                    <div class="invalid-feedback text-start ms-4">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="mb-3">
-                <input type="password" name="password" class="form-control custom-login-input @error('password') is-invalid @enderror"
+                <input type="password" name="password"
+                    class="form-control custom-login-input @error('password') is-invalid @enderror"
                     placeholder="Password" required>
                 @error('password')
-                <div class="invalid-feedback text-start ms-4">{{ $message }}</div>
+                    <div class="invalid-feedback text-start ms-4">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -53,8 +55,17 @@
 
         <div class="mt-4">
             <span class="text-muted">Don't have an account? </span>
-            <a href="{{ route('register') }}" class="text-decoration-none fw-bold" style="color: #0d6efd;">Register Here</a>
+            <a href="{{ route('register') }}" class="text-decoration-none fw-bold" style="color: #0d6efd;">Register
+                Here</a>
         </div>
+
+        <div class="text-center mt-6">
+            <a href="{{ url('/') }}"
+                class="inline-block px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg transition">
+                ⬅ Back to Homepage
+            </a>
+        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

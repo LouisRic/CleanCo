@@ -1,27 +1,23 @@
 <?php
 
+use App\Http\Controllers\LaundryTypeController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 
-//Tolong cek .env.example, ada beberapa tambahan
+// ==============================
+// PUBLIC ROUTES
+// ==============================
+Route::get('/', fn() => view('home.show'))->name('home');
+Route::get('/services', fn() => view('service.show'))->name('service');
+Route::get('/contact', fn() => view('contact.show'))->name('contact');
 
-Route::get('/', function () {
-    return view('home.show');
-})->name('home');
-
-Route::get('/services', function () {
-    return view('service.show');
-})->name('service');
-
-Route::get('/contact', function () {
-    return view('contact.show');
-})->name('contact');
-
+// AUTH
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
@@ -31,37 +27,52 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-Route::middleware('admin')->group(function () {
-    //Buat page yang restricted cuman untuk admin routes nya masukkin di sini ya
-    Route::get('/admin/dashboard', action: function () {
-        return view('pages.admin.adminDashboard');
-    })->name('admin.dashboard');
+// ==============================
+// ADMIN ROUTES (Protected by admin middleware)
+// ==============================
+Route::prefix('admin')->middleware('admin')->group(function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('admin.dashboard');
+
+    Route::prefix('services')->group(function () {
+        Route::get('', [LaundryTypeController::class, 'index'])->name('services.index');
+        Route::get('create', [LaundryTypeController::class, 'create'])->name('services.create');
+        Route::post('store', [LaundryTypeController::class, 'store'])->name('services.store');
+        Route::put('{id}/update', [LaundryTypeController::class, 'update'])->name('services.update');
+        Route::get('{id}/edit', [LaundryTypeController::class, 'edit'])->name('services.edit');
+        Route::delete('{id}/delete', [LaundryTypeController::class, 'destroy'])->name('services.delete');
+    });
+
+    Route::prefix('transactions')->group(function () {
+        Route::get('', [TransactionController::class, 'index'])->name('transactions.index');
+        Route::get('create', [TransactionController::class, 'create'])->name('transactions.create');
+        Route::post('', [TransactionController::class, 'store'])->name('transactions.store');
+        Route::patch('{order}/status', [TransactionController::class, 'updateStatus'])->name('transactions.updateStatus');
+
+        Route::get('{id}', [TransactionController::class, 'show'])->name('transactions.show');
+        Route::get('{id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
+        Route::put('{id}', [TransactionController::class, 'update'])->name('transactions.update');
+        Route::delete('{id}', [TransactionController::class, 'destroy'])->name('transactions.delete');
+    });
+
+    Route::prefix('reports')->group(function () {
+        Route::get('', [ReportController::class, 'index'])->name('reports.index');
+        Route::get('{id}', [ReportController::class, 'show'])->name('reports.show');
+    });
+
+    Route::prefix('customers')->group(function () {
+        Route::get('', [CustomerController::class, 'index'])->name('customers.index');
+        Route::get('{id}', [CustomerController::class, 'show'])->name('customers.show');
+        Route::delete('{id}', [CustomerController::class, 'destroy'])->name('customers.delete');
+    });
 });
 
-Route::middleware('customer')->group(function () {
-    //Buat page yang restricted cuman untuk customer routes nya masukkin di sini ya
-    Route::get("/customer/dashboard", function () {
-        return view('pages.customer.customerDashboard');
-    })->name('customer.dashboard');
+
+// ==============================
+// CUSTOMER ROUTES
+// ==============================
+Route::prefix('customer')->middleware('customer')->group(function () {
+    Route::get('/dashboard', fn() => view('pages.customer.customerDashboard'))
+        ->name('customer.dashboard');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth']);
-
-
-// Route::get('/email/verify', function () {
-//     return view('auth.verify-email');
-// })->middleware('auth')->name('verification.notice');
-
-// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-//     $request->fulfill();
-//     return redirect('/dashboard');
-// })->middleware(['auth', 'signed'])->name('verification.verify');
-
-
-// Route::post('/email/verification-notification', function (Request $request) {
-//     $request->user()->sendEmailVerificationNotification();
-
-//     return back()->with('message', 'Verification link sent!');
-// })->middleware(['auth', 'throttle:6,1'])->name('verification.send');

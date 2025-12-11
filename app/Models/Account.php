@@ -13,6 +13,11 @@ class Account extends Authenticatable
     protected $guarded = [];
     protected $hidden = ['password', 'remember_token'];
 
+    public function getPointsBalanceAttribute()
+    {
+        return $value ?? 0;
+    }
+
     public function laundryOrders()
     {
         return $this->hasMany(LaundryOrder::class);

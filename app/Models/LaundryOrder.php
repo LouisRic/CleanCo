@@ -11,6 +11,11 @@ class LaundryOrder extends Model
 
     protected $guarded = [];
 
+    public function getOrderCodeAttribute()
+    {
+        return 'LD' . str_pad($this->id, 4, '0', STR_PAD_LEFT);
+    }
+
     public function account()
     {
         return $this->belongsTo(Account::class);
@@ -23,7 +28,7 @@ class LaundryOrder extends Model
 
     public function customerVoucher()
     {
-        return $this->hasOne(CustomerVoucher::class);
+        return $this->belongsTo(CustomerVoucher::class, 'customer_voucher_id');
     }
 
     public function pointTransactions()
