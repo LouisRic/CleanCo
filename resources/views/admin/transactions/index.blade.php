@@ -1,13 +1,13 @@
 @extends('admin.layout.master')
-@section('title', 'Transactions')
-@section('page_title', 'Transactions')
+@section('title', __('admin_transactions_show.transactions'))
+@section('page_title', __('admin_transactions_show.transactions'))
 
 @section('content')
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Laundry Transactions</h2>
+    <h2>{{__('admin_transactions_show.laundry_transactions')}}</h2>
     <a href="{{ route('transactions.create') }}" class="btn btn-primary btn-sm">
-        <strong>+ Add Transaction</strong>
+        <strong>+ {{__('admin_transactions_show.add_transaction')}}</strong>
     </a>
 </div>
 
@@ -16,15 +16,15 @@
     <table id="transactions-table" class="table table-bordered table-striped align-middle mb-0">
         <thead class="table-dark">
             <tr class="table-dark">
-                <th style="width:50px;" class="text-center">Code</th>
-                <th class="text-center">Customer</th>
-                <th class="text-center">Type</th>
-                <th class="text-center">Order Date</th>
-                <th class="text-center">Weight</th>
-                <th class="text-center">Payment Status</th>
-                <th class="text-center">Laundry Status</th>
-                <th class="text-center">Pickup Status</th>
-                <th style="width:150px;" class="text-center">Action</th>
+                <th style="width:50px;" class="text-center">{{__('admin_transactions_show.code')}}</th>
+                <th class="text-center">{{__('admin_transactions_show.customer')}}</th>
+                <th class="text-center">{{__('admin_transactions_show.type')}}</th>
+                <th class="text-center">{{__('admin_transactions_show.order_date')}}</th>
+                <th class="text-center">{{__('admin_transactions_show.weight')}}</th>
+                <th class="text-center">{{__('admin_transactions_show.payment_status')}}</th>
+                <th class="text-center">{{__('admin_transactions_show.laundry_status')}}</th>
+                <th class="text-center">{{__('admin_transactions_show.pickup_status')}}</th>
+                <th style="width:150px;" class="text-center">{{__('admin_transactions_show.action')}}</th>
             </tr>
         </thead>
 
@@ -89,21 +89,21 @@
                     <div class="modal-content">
 
                         <div class="modal-header bg-danger text-white">
-                            <h5 class="modal-title">Delete Transaction</h5>
+                            <h5 class="modal-title">{{ __('admin_transactions_show.delete_transactions') }}</h5>
                         </div>
 
                         <div class="modal-body">
-                            Are you sure you want to delete <strong>{{ $order->order_code }}</strong>?
+                            {{ __('admin_transactions_show.delete_question') }} <strong>{{ $order->order_code }}</strong>?
                         </div>
 
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">modal">{{ __('admin_transactions_show.cancel') }}</button>
 
                             <form action="{{ route('transactions.delete', $order->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger px-4">
-                                    Yes, Delete
+                                    {{__('admin_transactions_show.yes_delete')}}
                                 </button>
                             </form>
                         </div>

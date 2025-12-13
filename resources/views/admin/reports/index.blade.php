@@ -1,11 +1,11 @@
 @extends('admin.layout.master')
-@section('title', 'Reports')
-@section('page_title', 'Reports')
+@section('title', __('admin_reports.title'))
+@section('page_title', __('admin_reports.title'))
 
 @section('content')
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Laundry Reports</h2>
+    <h2>{{ __('admin_reports.page_title') }}</h2>
 </div>
 
 <div class="bg-white p-3 rounded shadow-sm">
@@ -13,15 +13,15 @@
     <table id="transactions-table" class="table table-bordered table-striped align-middle mb-0">
         <thead class="table-dark">
             <tr class="table-dark">
-                <th style="width:50px;" class="text-center">Code</th>
-                <th class="text-center">Customer</th>
-                <th class="text-center">Type</th>
-                <th class="text-center">Order Date</th>
-                <th class="text-center">Weight</th>
-                <th class="text-center">Payment Status</th>
-                <th class="text-center">Laundry Status</th>
-                <th class="text-center">Pickup Status</th>
-                <th style="width:150px;" class="text-center">Action</th>
+                <th style="width:50px;" class="text-center">{{ __('admin_reports.table.code') }}</th>
+                <th class="text-center">{{ __('admin_reports.table.customer') }}</th>
+                <th class="text-center">{{ __('admin_reports.table.type') }}</th>
+                <th class="text-center">{{ __('admin_reports.table.order_date') }}</th>
+                <th class="text-center">{{ __('admin_reports.table.weight') }}</th>
+                <th class="text-center">{{ __('admin_reports.table.payment_status') }}</th>
+                <th class="text-center">{{ __('admin_reports.table.laundry_status') }}</th>
+                <th class="text-center">{{ __('admin_reports.table.pickup_status') }}</th>
+                <th style="width:150px;" class="text-center">{{ __('admin_reports.table.action') }}</th>
             </tr>
         </thead>
 

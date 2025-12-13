@@ -27,6 +27,18 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
+//LOCALIZATION
+Route::get('/lang/{locale}', function($locale){
+    if(!in_array($locale, ['en', 'id'])){
+        abort(400);
+    }
+
+    session(['locale' => $locale]);
+    app()->setlocale($locale);
+
+    return redirect()->back();
+})->name('change.lang');
+
 // ==============================
 // ADMIN ROUTES (Protected by admin middleware)
 // ==============================

@@ -1,11 +1,11 @@
 @extends('admin.layout.master')
-@section('title', 'Customer Data')
-@section('page_title', 'Customer Data')
+@section('title', __('admin_customers.title'))
+@section('page_title', __('admin_customers.title'))
 
 @section('content')
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>List of Customer Data</h2>
+    <h2>{{ __('admin_customers.list_title') }}</h2>
 </div>
 
 <div class="bg-white p-3 rounded shadow-sm">
@@ -13,14 +13,14 @@
     <table id="transactions-table" class="table table-bordered table-striped align-middle mb-0">
         <thead class="table-dark">
             <tr class="table-dark">
-                <th style="width:50px;" class="text-center">ID</th>
-                <th class="text-center">Name</th>
-                <th class="text-center">Email</th>
-                <th class="text-center">Phone</th>
-                <th class="text-center">Gender</th>
-                <th class="text-center">Address</th>
-                <th class="text-center">Points</th>
-                <th style="width:150px;" class="text-center">Action</th>
+                <th style="width:50px;" class="text-center">{{ __('admin_customers.table.id') }}</th>
+                <th class="text-center">{{ __('admin_customers.table.name') }}</th>
+                <th class="text-center">{{ __('admin_customers.table.email') }}</th>
+                <th class="text-center">{{ __('admin_customers.table.phone') }}</th>
+                <th class="text-center">{{ __('admin_customers.table.gender') }}</th>
+                <th class="text-center">{{ __('admin_customers.table.address') }}</th>
+                <th class="text-center">{{ __('admin_customers.table.points') }}</th>
+                <th style="width:150px;" class="text-center">{{ __('admin_customers.table.action') }}</th>
             </tr>
         </thead>
 
@@ -53,21 +53,21 @@
                     <div class="modal-content">
 
                         <div class="modal-header bg-danger text-white">
-                            <h5 class="modal-title">Delete Customer</h5>
+                            <h5 class="modal-title">{{ __('admin_customers.modal.title') }}</h5>
                         </div>
 
                         <div class="modal-body">
-                            Are you sure you want to delete
+                            {{ __('admin_customers.modal.confirm') }}
                             <strong>{{ $acc->name }}</strong>?
                         </div>
 
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">{{ __('admin_customers.modal.no') }}</button>
 
                             <form action="{{ route('customers.delete', $acc->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger px-4">Yes, Delete</button>
+                                <button class="btn btn-danger px-4">{{ __('admin_customers.modal.yes') }}</button>
                             </form>
                         </div>
 
