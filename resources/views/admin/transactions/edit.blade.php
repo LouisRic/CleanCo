@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between py-2 mb-2 border-bottom">
-                            <h6>{{ __('transactions.laundry_type') }}</h6>
+                            <h6>{{ __('admin_transactions.laundry_type') }}</h6>
                             <span class="fw-semibold">{{ $transaction->laundryType->name }}</span>
                         </div>
 

@@ -39,7 +39,7 @@
                     @if($order->payment_status == 'unpaid') bg-danger
                     @elseif($order->payment_status == 'paid') bg-success
                     @else bg-success @endif">
-                        {{ ucfirst($order->payment_status) }}
+                        {{ __('status.payment.' . $order->payment_status) }}
                     </span>
                 </td>
 
@@ -49,7 +49,7 @@
                     @elseif($order->laundry_status == 'washed') bg-primary
                     @elseif($order->laundry_status == 'ready') bg-info
                     @else bg-success @endif">
-                        {{ ucfirst($order->laundry_status) }}
+                        {{ __('status.laundry.' . $order->laundry_status) }}
                     </span>
                 </td>
 
@@ -58,7 +58,7 @@
                     @if($order->pickup_status == 'pending') bg-warning
                     @elseif($order->pickup_status == 'picked_up') bg-success
                     @else bg-success @endif">
-                        {{ ucfirst($order->pickup_status) }}
+                        {{ __('status.pickup.' . $order->pickup_status) }}
                     </span>
                 </td>
 
