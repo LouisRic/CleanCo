@@ -30,9 +30,10 @@
             </ul>
 
             <div class="d-flex gap-2 align-items-center">
+
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle border-0 bg-transparent" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn dropdown-toggle border-0 bg-transparent" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         {{ strtoupper(app()->getLocale()) }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -52,40 +53,40 @@
                 </div>
 
                 @guest
-                <a href="{{ route('login') }}">
-                    <button class="btn-secondary">
-                        {{ __('navbar.login') }}
-                    </button>
-                </a>
+                    <a href="{{ route('login') }}">
+                        <button class="btn-secondary">
+                            {{ __('navbar.login') }}
+                        </button>
+                    </a>
 
-                <a href="{{ route('register') }}">
-                    <button class="btn-primary">
-                        {{ __('navbar.register') }}
-                    </button>
-                </a>
+                    <a href="{{ route('register') }}">
+                        <button class="btn-primary">
+                            {{ __('navbar.register') }}
+                        </button>
+                    </a>
                 @endguest
 
                 @auth
-                @if (Auth::user()->role === 'admin')
-                <a href="{{ route('admin.dashboard') }}">
-                    <button class="btn-primary">
-                        {{ __('navbar.admin_dashboard') }}
-                    </button>
-                </a>
-                @else
-                <a href="{{ route('customer.dashboard') }}">
-                    <button class="btn-primary">
-                        {{ __('navbar.my_dashboard') }}
-                    </button>
-                </a>
-                @endif
+                    @if (Auth::user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}">
+                            <button class="btn-primary">
+                                {{ __('navbar.admin_dashboard') }}
+                            </button>
+                        </a>
+                    @else
+                        <a href="{{ route('customer.dashboard') }}">
+                            <button class="btn-primary">
+                                {{ __('navbar.my_dashboard') }}
+                            </button>
+                        </a>
+                    @endif
 
-                <form action="{{ route('logout') }}" method="POST" class="m-0">
-                    @csrf
-                    <button class="btn-secondary">
-                        {{ __('navbar.logout') }}
-                    </button>
-                </form>
+                    <form action="{{ route('logout') }}" method="POST" class="m-0">
+                        @csrf
+                        <button class="btn-secondary">
+                            {{ __('navbar.logout') }}
+                        </button>
+                    </form>
                 @endauth
 
             </div>

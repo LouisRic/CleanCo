@@ -7,29 +7,56 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\CustomerDashboardController;
+use App\Http\Controllers\CheckOrderController;
+use App\Http\Controllers\OrderHistoryController;
+use App\Http\Controllers\OrderInvoiceController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PasswordController;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Public Routes (Tidak perlu authentication)
+|--------------------------------------------------------------------------
+| Route yang bisa diakses oleh siapa saja tanpa perlu login
+*/
 
-// ==============================
-// PUBLIC ROUTES
-// ==============================
-Route::get('/', fn() => view('home.show'))->name('home');
-Route::get('/services', fn() => view('service.show'))->name('service');
-Route::get('/contact', fn() => view('contact.show'))->name('contact');
+Route::get('/', function () {
+    return view('home.show');
+})->name('home');
+
+Route::get('/services', function () {
+    return view('service.show');
+})->name('service');
+
+Route::get('/contact', function () {
+    return view('contact.show');
+})->name('contact');
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 // AUTH
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::middleware('admin')->group(function () {
+    // Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+});
 
+Route::middleware('customer')->group(function () {
+    Route::get('/customer/dashboard', [CustomerDashboardController::class, 'index'])->name('customer.dashboard');
+    Route::get('/customer/check-order', [CheckOrderController::class, 'index'])->name('customer.check-order');
+    Route::get('/customer/order-history', [OrderHistoryController::class, 'index'])->name('customer.order-history');
+    Route::get('/customer/order-invoice/{id}', [OrderInvoiceController::class, 'index'])->name('customer.order-invoice');
+});
 //LOCALIZATION
-Route::get('/lang/{locale}', function($locale){
-    if(!in_array($locale, ['en', 'id'])){
+Route::get('/lang/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'id'])) {
         abort(400);
     }
 
@@ -88,3 +115,29 @@ Route::prefix('customer')->middleware('customer')->group(function () {
     Route::get('/dashboard', fn() => view('pages.customer.customerDashboard'))
         ->name('customer.dashboard');
 });
+
+Route::get('/profile', function () {
+    return view('profile.profile');
+})->name('profile');
+
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/profile', [ProfileController::class, 'show'])
+        ->name('profile.show');
+
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+Route::get('/profile/logout', function () {
+    return view('profile.logout');
+})->name('profile.logout');
+
+Route::get('/profile/password', [PasswordController::class, 'edit'])->name('profile.edit-password');
+Route::put('/profile/password', [PasswordController::class, 'update'])->name('profile.update-password');
+
+Route::get('/profile/language', [ProfileController::class, 'language'])
+    ->name('profile.language');
