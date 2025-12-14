@@ -54,7 +54,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <div class="detail-item">
-                    <strong>Order Number:</strong> {{ $order->id }}
+                    <strong>Order Number:</strong> LD-{{ str_pad($order->id, 4, '0', STR_PAD_LEFT) }}
                 </div>
             </div>
             <div class="col-md-6 mb-3">

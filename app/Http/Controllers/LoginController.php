@@ -22,6 +22,10 @@ class  LoginController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
+        ], [
+            'email.required' => 'Email is required',
+            'email.email' => 'Please enter a valid email address',
+            'password.required' => 'Password is required',
         ]);
 
         $remember = $request->boolean('remember');    
@@ -40,9 +44,18 @@ class  LoginController extends Controller
     }
 
     public function logout(Request $request){
-        Auth::logout();
+        // Clear authentication
+        Auth::guard('web')->logout();
+        
+        // Invalidate and regenerate session
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+        
+        // Clear remember cookie if exists
+        if($request->hasCookie(Auth::getRecallerName())){
+            cookie()->queue(cookie()->forget(Auth::getRecallerName()));
+        }
+        
+        return redirect()->route('home')->with('success', 'You have been logged out successfully!');
     }
 }

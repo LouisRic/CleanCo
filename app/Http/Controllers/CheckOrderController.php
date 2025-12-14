@@ -9,12 +9,10 @@ class CheckOrderController extends Controller
 {
     public function index(Request $request)
     {
-        // Get order ID from query parameter (numeric ID, e.g., 1, 2, 3)
         $invoiceCode = $request->query('invoice_code');
         $order = null;
         
         if ($invoiceCode) {
-            // Search order by numeric ID
             $order = LaundryOrder::with(['account', 'laundryType'])
                 ->where('id', $invoiceCode)
                 ->first();
