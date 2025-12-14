@@ -5,32 +5,32 @@
 
         <div class="contact-left">
             <div class="info-badge black-badge">
-                PLEASE CALL US AT
+                {{ __('home.call_us') }}
             </div>
 
             <div class="qr-code-box">
                 <img src="{{ asset('images/barcodes.png') }}" alt="QR Code" class="qr-code">
-                <div class="qr-text">SCAN ME</div>
+                <div class="qr-text">{{ __('contact.scan_me') }}</div>
             </div>
 
             <div class="phone-number">
                 0825-4848-5766
             </div>
             <div class="phone-desc">
-                Scan here! Contact us here!
+                {{ __('home.phone_desc') }}
             </div>
         </div>
 
         <div class="contact-right">
-            <h2>BEST SERVICES</h2>
+            <h2> {{ __('contact.best_services') }}</h2>
             <div class="line"></div>
 
             <div class="service-address">
-                123 Cleanhouse Jakarta Barat
+                {{ __('contact.address') }}
             </div>
 
             <p class="service-desc">
-                We provide fast, reliable, and quality laundry services for your convenience.
+                {{ __('contact.description') }}
             </p>
 
             <div class="social-links">
