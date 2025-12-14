@@ -7,6 +7,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PasswordController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -76,3 +78,29 @@ Route::prefix('customer')->middleware('customer')->group(function () {
     Route::get('/dashboard', fn() => view('pages.customer.customerDashboard'))
         ->name('customer.dashboard');
 });
+
+Route::get('/profile', function () {
+    return view('profile.profile');
+})->name('profile');
+
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/profile', [ProfileController::class, 'show'])
+        ->name('profile.show');
+
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+Route::get('/profile/logout', function () {
+    return view('profile.logout');
+})->name('profile.logout');
+
+Route::get('/profile/password', [PasswordController::class, 'edit'])->name('profile.edit-password');
+Route::put('/profile/password', [PasswordController::class, 'update'])->name('profile.update-password');
+
+Route::get('/profile/language', [ProfileController::class, 'language'])
+    ->name('profile.language');

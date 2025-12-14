@@ -144,7 +144,7 @@ body {
 
 .washing-machine {
     position: absolute;
-    bottom: -20px; /* TURUN dikit */
+    bottom: -20px;
     left: -120px;
     width: 45%;
     z-index: 3;
@@ -192,7 +192,7 @@ body {
 }
 
 .hero-badge {
-    position: absolute; /* penting! */
+    position: absolute;
     background: #ff8c00;
     padding: 10px 25px;
     border-radius: 50px;
@@ -204,7 +204,7 @@ body {
     gap: 10px;
     width: fit-content;
     box-shadow: 3px 4px rgba(0, 0, 0, 0.2);
-    pointer-events: auto; /* supaya bisa diklik */
+    pointer-events: auto;
 }
 
 .badge-1 {
@@ -236,7 +236,7 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    pointer-events: none; /* agar tidak ganggu apa-apa */
+    pointer-events: none;
 }
 
 .badge-circle {
@@ -755,7 +755,7 @@ body {
 
 .social-links {
     display: flex;
-    flex-direction: column; /* supaya VERTICAL */
+    flex-direction: column;
     gap: 12px;
     margin-top: 25px;
 }
@@ -773,7 +773,7 @@ body {
 
 .social-link i {
     font-size: 22px;
-    color: #147eba; /* sama warna tema */
+    color: #147eba;
     transition: transform 0.3s ease;
 }
 
@@ -783,4 +783,43 @@ body {
 
 .social-link:hover i {
     transform: translateX(4px);
+}
+
+.sidebar-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 6px;
+    opacity: 0.95;
+}
+
+.avatar-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.avatar-wrapper label {
+    position: relative;
+    cursor: pointer;
+}
+
+/* INI KUNCI UTAMA */
+.avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: 3px solid #eee;
+}
+
+.edit-avatar {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
 }
