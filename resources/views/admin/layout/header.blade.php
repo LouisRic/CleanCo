@@ -1,4 +1,5 @@
-<div style="width:100%; background:white; padding:12px 20px; border-bottom:1px solid #ddd; display:flex; 
+<div
+    style="width:100%; background:white; padding:12px 20px; border-bottom:1px solid #ddd; display:flex; 
     justify-content:space-between; align-items:center; height:70px;">
 
     {{-- Left side: Page title --}}
@@ -20,9 +21,20 @@
         </div>
 
         {{-- Profile Image --}}
-        <img src="https://i.pravatar.cc/50?img=5" 
-             alt="profile" 
-             style="width:48px; height:48px; border-radius:50%; object-fit:cover; border:2px solid #ccc;">
+        <a href="{{ route('profile.show') }}" style="display:inline-block; border-radius:50%; transition:all .25s ease;">
+            <img src="{{ auth()->user()->photo ? asset('storage/' . auth()->user()->photo) : asset('images/default-avatar.png') }}"
+                alt="profile"
+                style="
+            width:48px;
+            height:48px;
+            border-radius:50%;
+            object-fit:cover;
+            cursor:pointer;
+            transition:all .25s ease;
+        "
+                onmouseover="this.style.transform='scale(1.08)'; this.style.boxShadow='0 0 0 3px rgba(78,143,199,.6)'"
+                onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
+        </a>
     </div>
 
 </div>
