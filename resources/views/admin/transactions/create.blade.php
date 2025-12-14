@@ -1,10 +1,10 @@
 @extends('admin.layout.master')
-@section('title', 'Add Transaction')
-@section('page_title', 'Add Transaction')
+@section('title', __('admin_transactions.add_transaction'))
+@section('page_title', __('admin_transactions.add_transaction'))
 
 @section('content')
 
-<h2 class="mb-4">Add Laundry Transaction</h2>
+<h2 class="mb-4">{{ __('admin_transactions.add_laundry_transaction') }}</h2>
 
 @if ($errors->any())
 <div class="alert alert-danger">
@@ -22,14 +22,14 @@
 
     {{-- Order Code (readonly) --}}
     <div class="mb-3">
-        <label class="form-label">Order Code</label>
+        <label class="form-label">{{ __('admin_transactions.order_code') }}</label>
         <input type="text" class="form-control" value="{{ $nextCode }}" readonly>
     </div>
 
     {{-- Customer --}}
     {{-- Phone Number --}}
     <div class="mb-3">
-        <label class="form-label">Phone Number</label>
+        <label class="form-label">{{ __('admin_transactions.phone_number') }}</label>
         <input type="text" id="phone_input" class="form-control" placeholder="08xxxxxxxxxx">
     </div>
 
@@ -38,14 +38,14 @@
 
     {{-- Customer Name (readonly) --}}
     <div class="mb-3">
-        <label class="form-label">Customer Name</label>
+        <label class="form-label">{{ __('admin_transactions.customer_name') }}</label>
         <input type="text" id="customer_name" class="form-control" readonly>
     </div>
 
 
     {{-- Laundry Type --}}
     <div class="mb-3">
-        <label class="form-label">Laundry Type</label>
+        <label class="form-label">{{ __('admin_transactions.laundry_type') }}</label>
         <select name="laundry_type_id" id="laundry_type_id" class="form-select" required>
             @foreach ($types as $type)
             <option value="{{ $type->id }}">
@@ -57,7 +57,7 @@
 
     {{-- Voucher --}}
     <div class="mb-3">
-        <label class="form-label">Voucher (optional)</label>
+        <label class="form-label">{{ __('admin_transactions.voucher') }}</label>
         <input type="text" name="voucher_code" id="voucher_code" class="form-control">
     </div>
 
@@ -66,13 +66,13 @@
     {{-- Dates --}}
     <div class="row">
         <div class="col-md-6 mb-3">
-            <label class="form-label">Order Date</label>
+            <label class="form-label">{{ __('admin_transactions.order_date') }}</label>
             <input type="date" name="order_date" class="form-control"
                 value="{{ date('Y-m-d') }}" required>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label class="form-label">Finish / Pickup Date</label>
+            <label class="form-label">{{ __('admin_transactions.pickup_date') }}</label>
             <input type="date" name="pickup_date" id="pickup_date" class="form-control" readonly>
         </div>
     </div>
@@ -81,13 +81,13 @@
     {{-- Weight & Total --}}
     <div class="row">
         <div class="col-md-6 mb-3">
-            <label class="form-label">Weight (kg)</label>
+            <label class="form-label">{{ __('admin_transactions.weight') }}</label>
             <input type="number" name="weight_kg" id="weight_kg"
                 step="0.1" min="0.1" class="form-control" required>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label class="form-label">Total Price (Rp)</label>
+            <label class="form-label">{{ __('admin_transactions.total_price') }}</label>
             <input type="text" id="total_price_display" class="form-control"
                 placeholder="Will be calculated automatically" readonly>
             {{-- hidden yang dikirim ke backend --}}
@@ -98,39 +98,39 @@
     {{-- Status --}}
     <div class="row">
         <div class="col-md-4 mb-3">
-            <label class="form-label">Payment Status</label>
+            <label class="form-label">{{ __('admin_transactions.payment_status') }}</label>
             <select name="payment_status" class="form-select" required>
-                <option value="unpaid">Unpaid</option>
-                <option value="paid">Paid</option>
+                <option value="unpaid">{{ __('admin_transactions.unpaid') }}</option>
+                <option value="paid">{{ __('admin_transactions.paid') }}</option>
             </select>
         </div>
 
         <div class="col-md-4 mb-3">
-            <label class="form-label">Laundry Status</label>
+            <label class="form-label">{{ __('admin_transactions.laundry_status') }}</label>
             <select name="laundry_status" class="form-select" required>
-                <option value="process">Process</option>
-                <option value="washed">Washed</option>
-                <option value="ready">Ready</option>
-                <option value="completed">Completed</option>
+                <option value="process">{{ __('admin_transactions.process') }}</option>
+                <option value="washed">{{ __('admin_transactions.washed') }}</option>
+                <option value="ready">{{ __('admin_transactions.ready') }}</option>
+                <option value="completed">{{ __('admin_transactions.completed') }}</option>
             </select>
         </div>
 
         <div class="col-md-4 mb-3">
-            <label class="form-label">Pickup Status</label>
+            <label class="form-label">{{ __('admin_transactions.pickup_status') }}</label>
             <select name="pickup_status" class="form-select" required>
-                <option value="pending">Pending</option>
-                <option value="picked_up">Picked Up</option>
+                <option value="pending">{{ __('admin_transactions.pending') }}</option>
+                <option value="picked_up">{{ __('admin_transactions.picked_up') }}</option>
             </select>
         </div>
     </div>
 
     {{-- Notes --}}
     <div class="mb-3">
-        <label class="form-label">Notes</label>
+        <label class="form-label">{{ __('admin_transactions.notes') }}</label>
         <textarea name="notes" class="form-control" placeholder="Write..." rows="3"></textarea>
     </div>
 
-    <button class="btn btn-primary">Save Transaction</button>
+    <button class="btn btn-primary">{{ __('admin_transactions.save_transaction') }}</button>
 
 </form>
 

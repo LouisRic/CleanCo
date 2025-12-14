@@ -1,10 +1,10 @@
 @extends('admin.layout.master')
-@section('title', 'Customer Details')
-@section('page_title', 'Customer Details')
+@section('title', __('admin_customer_detail.title'))
+@section('page_title', __('admin_customer_detail.title'))
 
 @section('content')
 
-<h2 class="mb-4">Customer Details</h2>
+<h2 class="mb-4">{{ __('admin_customer_detail.title') }}</h2>
 
 <div class="card shadow-sm p-4">
 
@@ -17,7 +17,7 @@
 
         <div class="mt-2 d-flex gap-2">
             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
-                🗑 Delete
+                🗑 {{ __('admin_customer_detail.delete') }}
             </button>
         </div>
     </div>
@@ -27,17 +27,17 @@
     <div class="card shadow-sm rounded-3 p-3 mb-4">
         <div class="card-body">
 
-            <h4 class="mb-3 pb-2 border-bottom">Customer Summary</h4>
+            <h4 class="mb-3 pb-2 border-bottom">{{ __('admin_customer_detail.summary') }}</h4>
 
             {{-- Customer ID --}}
             <div class="d-flex justify-content-between py-2 mb-2 border-bottom">
-                <h6>Customer ID</h6>
+                <h6>{{ __('admin_customer_detail.customer_id') }}</h6>
                 <span class="fw-semibold">#{{ str_pad($account->id, 4, '0', STR_PAD_LEFT) }}</span>
             </div>
 
             {{-- Points Balance --}}
             <div class="d-flex justify-content-between py-2 mb-2 border-bottom">
-                <h6>Points Balance</h6>
+                <h6>{{ __('admin_customer_detail.points_balance') }}</h6>
                 <span class="fw-bold text-success">
                     {{ $account->points_balance }} pts
                 </span>
@@ -51,35 +51,35 @@
     <div class="card shadow-sm rounded-3 p-3">
         <div class="card-body">
 
-            <h4 class="mb-3 pb-2 border-bottom">Account Information</h4>
+            <h4 class="mb-3 pb-2 border-bottom">{{ __('admin_customer_detail.account_info') }}</h4>
 
             {{-- Name --}}
             <div class="d-flex justify-content-between py-2 mb-2 border-bottom">
-                <h6>Name</h6>
+                <h6>{{ __('admin_customer_detail.name') }}</h6>
                 <span class="fw-semibold">{{ $account->name }}</span>
             </div>
 
             {{-- Email --}}
             <div class="d-flex justify-content-between py-2 mb-2 border-bottom">
-                <h6>Email</h6>
+                <h6>{{ __('admin_customer_detail.email') }}</h6>
                 <span class="fw-semibold">{{ $account->email ?? '-' }}</span>
             </div>
 
             {{-- Phone --}}
             <div class="d-flex justify-content-between py-2 mb-2 border-bottom">
-                <h6>Phone Number</h6>
+                <h6>{{ __('admin_customer_detail.phone') }}</h6>
                 <span class="fw-semibold">{{ $account->telephone ?? '-' }}</span>
             </div>
 
             {{-- Gender --}}
             <div class="d-flex justify-content-between py-2 mb-2 border-bottom">
-                <h6>Gender</h6>
+                <h6>{{ __('admin_customer_detail.gender') }}</h6>
                 <span class="fw-semibold">{{ ucfirst($account->gender) }}</span>
             </div>
 
             {{-- Address --}}
             <div class="d-flex justify-content-between py-2 mb-2 border-bottom">
-                <h6>Address</h6>
+                <h6>{{ __('admin_customer_detail.address') }}</h6>
                 <span class="fw-semibold">{{ $account->address ?? '-' }}</span>
             </div>
 

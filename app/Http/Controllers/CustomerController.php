@@ -9,7 +9,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $accounts = Account::orderBy('name')->get();
+        $accounts = Account::where("role", 'customer')->get();
 
         return view('admin.customers.index', compact('accounts'));
     }

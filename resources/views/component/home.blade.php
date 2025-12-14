@@ -13,21 +13,21 @@
                             <div class="badge-circle">
                                 <i class="bi bi-clock-fill"></i>
                             </div>
-                            Open 24 Hours
+                            {{ __('home.badge_open') }}
                         </div>
 
                         <div class="hero-badge badge-2">
                             <div class="badge-circle">
                                 <i class="bi bi-shield-check"></i>
                             </div>
-                            Safety Guaranteed
+                            {{ __('home.badge_safe') }}
                         </div>
 
                         <div class="hero-badge badge-3">
                             <div class="badge-circle">
                                 <i class="bi bi-people-fill"></i>
                             </div>
-                            Membership
+                            {{ __('home.badge_member') }}
                         </div>
                     </div>
 
@@ -36,17 +36,15 @@
 
             </div>
             <div class="hero-right">
-                <h1>WE OFFER FAST AND<br>CLEAN LAUNDRY<br>SERVICES</h1>
-                <p>
-                    Experience fast and reliable laundry services that keep your clothes fresh, clean, and perfectly
-                    cared for.
-                    We handle every garment with attention to detail so you can look your best effortlessly.
+                <h1>{!! __('home.hero_title') !!}</h1>
+                <p class="mx-auto mx-lg-0">
+                    {{ __('home.hero_description') }}
                 </p>
 
                 <div class="hero-buttons">
-                    <button class="btn-black">Get Started</button>
+                    <button class="btn-black">{{ __('home.btn_get_started')}}</button>
                     <a href="#services" class="btn-grey" style="text-decoration:none; display:inline-block;">
-                        Learn More
+                        {{ __('home.btn_learn_more') }}
                     </a>
                 </div>
             </div>
