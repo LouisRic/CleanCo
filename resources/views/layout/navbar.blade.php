@@ -24,8 +24,8 @@
             </ul>
 
             <div class="d-flex gap-2">
-                <button class="btn-secondary">Login</button>
-                <button class="btn-primary">Register</button>
+                <a href="{{ route('login') }}" class="btn btn-secondary">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
             </div>
         </div>
     </div>

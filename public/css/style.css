@@ -784,3 +784,437 @@ body {
 .social-link:hover i {
     transform: translateX(4px);
 }
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Profile name styling */
+.profile-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Bell icon styling */
+.bell-icon {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bell-icon:hover {
+    color: #007bff;
+    transform: scale(1.1);
+}
+
+.navbar-collapse {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.promo-banner {
+    min-height: 200px;
+}
+.bg-orange {
+    background-color: #fd7e14;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Promo Carousel Styles */
+.promo-carousel-wrapper {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: -1.5rem;
+    margin-bottom: 2rem;
+    padding: 0;
+    overflow: hidden;
+}
+
+.promo-carousel-container {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 0;
+}
+
+.promo-banner {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    background-color: #ffd700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.promo-carousel-container .carousel-inner {
+    width: 100%;
+}
+
+.promo-banner-yellow {
+    background-color: #ffd700;
+}
+
+.promo-carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.promo-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 40px 20px;
+}
+
+.promo-circle {
+    width: 200px;
+    height: 200px;
+    background-color: #ff8c00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.promo-circle-inner {
+    width: 160px;
+    height: 160px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.promo-big-text {
+    font-size: 36px;
+    font-weight: 900;
+    color: #ff8c00;
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 2px;
+}
+
+.promo-ribbon {
+    background-color: #1e90ff;
+    color: white;
+    padding: 12px 40px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: -10px;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.promo-discount-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    background-color: #dc143c;
+    border-radius: 50%;
+    border: 4px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.discount-text-top {
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.discount-text-bottom {
+    font-size: 28px;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+}
+
+.promo-carousel-control {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    opacity: 1;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.promo-carousel-control:hover {
+    opacity: 0.8;
+}
+
+.promo-arrow-icon {
+    background-color: black !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    background-size: 60% !important;
+    opacity: 1 !important;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+    z-index: 10;
+}
+
+.carousel-control-prev {
+    left: 15px;
+}
+
+.carousel-control-next {
+    right: 15px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .promo-circle {
+        width: 150px;
+        height: 150px;
+    }
+
+    .promo-circle-inner {
+        width: 120px;
+        height: 120px;
+    }
+
+    .promo-big-text {
+        font-size: 28px;
+    }
+
+    .promo-ribbon {
+        padding: 10px 30px;
+        font-size: 16px;
+    }
+
+    .promo-discount-badge {
+        width: 80px;
+        height: 80px;
+        top: 15px;
+        right: 15px;
+    }
+
+    .discount-text-top {
+        font-size: 10px;
+    }
+
+    .discount-text-bottom {
+        font-size: 22px;
+    }
+
+    .promo-banner {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .promo-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .promo-circle-inner {
+        width: 95px;
+        height: 95px;
+    }
+
+    .promo-big-text {
+        font-size: 22px;
+    }
+
+    .promo-ribbon {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    .promo-discount-badge {
+        width: 70px;
+        height: 70px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .discount-text-top {
+        font-size: 9px;
+    }
+
+    .discount-text-bottom {
+        font-size: 18px;
+    }
+
+    .promo-carousel-control {
+        width: 40px;
+        height: 40px;
+    }
+
+    .promo-arrow-icon {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* Coupon Info Bar Styles */
+.coupon-info-bar {
+    margin-top: 1rem;
+}
+
+.coupon-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    background-color: #28a745;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coupon-icon {
+    font-size: 24px;
+    color: white;
+}
+
+.coupon-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-right: 8px;
+}
+
+.coupon-count {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.points-display {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.points-text {
+    color: #333;
+}
+
+/* Order Buttons Styles */
+.order-buttons-section {
+    margin-top: 1rem;
+}
+
+.btn-check-order {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-check-order:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-order-history {
+    background-color: #ff8c00;
+    border-color: #ff8c00;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-order-history:hover {
+    background-color: #e67e00;
+    border-color: #e67e00;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 140, 0, 0.3);
+}
+
+.btn-check-order i,
+.btn-order-history i {
+    font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .coupon-icon-wrapper {
+        width: 35px;
+        height: 35px;
+    }
+
+    .coupon-icon {
+        font-size: 20px;
+    }
+
+    .coupon-label {
+        font-size: 14px;
+    }
+
+    .coupon-count {
+        font-size: 16px;
+    }
+
+    .points-text {
+        font-size: 16px;
+    }
+
+    .btn-check-order,
+    .btn-order-history {
+        font-size: 14px;
+        padding: 12px !important;
+    }
+}
