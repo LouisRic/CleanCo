@@ -13,10 +13,16 @@
                 <span class="coupon-label">Coupon</span>
                 <span class="coupon-count">{{ $couponCount }}</span>
             </div>
+
+            <a href="{{ route('customer.vouchers') }}" class="btn btn-sm btn-outline-primary ms-3">
+                Voucher
+            </a>
         </div>
+
         <div class="points-display">
             <span class="points-text">{{ $pointsBalance }} points</span>
         </div>
     </div>
 </div>
+
 

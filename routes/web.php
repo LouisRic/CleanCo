@@ -15,6 +15,8 @@ use App\Http\Controllers\OrderInvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PasswordController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VoucherController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -141,3 +143,11 @@ Route::put('/profile/password', [PasswordController::class, 'update'])->name('pr
 
 Route::get('/profile/language', [ProfileController::class, 'language'])
     ->name('profile.language');
+
+Route::get('/customer/vouchers', [VoucherController::class, 'index'])
+    ->middleware('auth')
+    ->name('customer.vouchers');
+
+Route::get('/customer/voucher/use', function () {
+    return view('pages.customer.voucher.use');
+})->name('customer.voucher.use');

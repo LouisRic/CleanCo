@@ -18,6 +18,7 @@ class Account extends Authenticatable
         'address',
         'gender',
         'photo',
+        'password',
     ];
     protected $hidden = ['password', 'remember_token'];
 
