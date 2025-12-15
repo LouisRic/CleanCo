@@ -2,6 +2,7 @@
 
     {{-- Logo --}}
     <div style="text-align:center;margin-bottom:24px;">
+        <img src="{{ asset('images/washingmachine.svg') }}" alt="CleanCo Logo" class="sidebar-logo">
         <h3 style="margin:0;font-size:22px;font-weight:bold;">CleanCo</h3>
     </div>
 
@@ -35,6 +36,12 @@
         <a href="{{ route('reports.index') }}"
             class="sidebar-link {{ request()->is('admin/reports*') ? 'active' : '' }}">
             📄 {{ __('admin.reports') }}
+        </a>
+
+        {{-- Profile Page --}}
+        <a href="{{ route('profile.show') }}"
+            class="sidebar-link {{ request()->is('admin/profile*') ? 'active' : '' }}">
+            👤 Profile
         </a>
 
         {{-- Logout --}}

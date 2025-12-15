@@ -9,6 +9,13 @@
 
     <!-- Style buat Side Bar -->
     <style>
+        .sidebar-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 6px;
+            opacity: 0.95;
+        }
+
         .sidebar {
             width: 240px;
             min-height: 100vh;
@@ -57,8 +64,10 @@
             background: #d94b4b;
         }
     </style>
+    <script src="{{ asset('js/profile.js') }}"></script>
 
 </head>
+
 <body>
 
     <div style="display: flex;">
