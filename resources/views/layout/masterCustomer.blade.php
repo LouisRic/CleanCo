@@ -12,15 +12,14 @@
     <link href="{{ asset('bootstrap-icons-1.13.1/bootstrap-icons.css') }}" rel="stylesheet">
 
     {{-- import styling --}}
-    <link rel="stylesheet" href="{{ 'css/style.css' }}">
-    <link rel="stylesheet" href="{{ 'css/profile.css' }}">
+    <link rel="stylesheet" href="{{ asset('css/style-customer.css') }}">
 </head>
 
 <body>
     {{-- supaya responsif --}}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         {{-- <div class="container-fluid"> --}}
-        @include('layout.navbar')
+        @include('layout.navbarCustomer')
         {{-- </div> --}}
     </nav>
 

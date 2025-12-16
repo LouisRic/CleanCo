@@ -27,8 +27,16 @@ class RegisterController extends Controller
             'telephone' => 'required|string|max:15|unique:accounts',
             'password' => 'required|string|min:6|confirmed'
         ];
+        
+        $messages = [
+            'email.required' => 'Email is required',
+            'email.email' => 'Please enter a valid email address',
+            'email.unique' => 'This email is already registered',
+            'password.min' => 'Password must be at least 6 characters',
+            'password.confirmed' => 'Password confirmation does not match',
+        ];
 
-        $validateData = $request->validate($rules);
+        $validateData = $request->validate($rules, $messages);
 
         // 1. Create User
         $user = Account::create([
