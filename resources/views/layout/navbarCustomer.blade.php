@@ -1,7 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid">
         <!-- Logo Section -->
-        <!-- Logo Section -->
         <a href="{{ route('home') }}" class="d-flex align-items-center gap-2" style="text-decoration:none;">
             <img src="{{ asset('images/Logo.svg') }}" alt="CleanCo Logo" class="logo-img" style="height:40px;">
             <span style="font-weight:600; font-size:20px; color:#333;">CleanCo</span>

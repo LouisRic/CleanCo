@@ -42,7 +42,24 @@
                 </p>
 
                 <div class="hero-buttons">
-                    <button class="btn-black">{{ __('home.btn_get_started')}}</button>
+                    @guest
+                        <!-- User belum login -->
+                        <a href="{{ route('register') }}">
+                            <button class="btn-black">{{ __('home.btn_get_started') }}</button>
+                        </a>
+                    @else
+                        <!-- User sudah login -->
+                        @if (Auth::user()->role === 'admin')
+                            <a href="{{ route('admin.dashboard') }}">
+                                <button class="btn-black">{{ __('home.btn_get_started') }}</button>
+                            </a>
+                        @else
+                            <a href="{{ route('customer.customerDashboard') }}">
+                                <button class="btn-black">{{ __('home.btn_get_started') }}</button>
+                            </a>
+                        @endif
+                    @endguest
+
                     <a href="#services" class="btn-grey" style="text-decoration:none; display:inline-block;">
                         {{ __('home.btn_learn_more') }}
                     </a>
