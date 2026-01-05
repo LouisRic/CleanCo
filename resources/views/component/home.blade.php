@@ -54,7 +54,7 @@
                                 <button class="btn-black">{{ __('home.btn_get_started') }}</button>
                             </a>
                         @else
-                            <a href="{{ route('customer.customerDashboard') }}">
+                            <a href="{{ route('customer.dashboard') }}">
                                 <button class="btn-black">{{ __('home.btn_get_started') }}</button>
                             </a>
                         @endif

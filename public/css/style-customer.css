@@ -1135,3 +1135,30 @@ body {
         margin-left: 0;
     }
 }
+
+.clickable-card {
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.clickable-card:hover {
+    background: #f0f6ff; /* sedikit biru soft */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.coupon-icon-wrapper {
+    transition: transform 0.2s ease;
+}
+
+.clickable-card:hover .coupon-icon-wrapper {
+    transform: scale(1.1);
+}
+
+.points-text {
+    transition: color 0.2s ease;
+}
+
+.clickable-card:hover .points-text {
+    color: #0d6efd; /* Bootstrap primary */
+}

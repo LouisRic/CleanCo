@@ -16,8 +16,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoucherController;
-
-
+use App\Http\Controllers\PointsController;
+use App\Http\Controllers\CustomerVoucherController;
 /*
 |--------------------------------------------------------------------------
 | Public Routes (Tidak perlu authentication)
@@ -148,6 +148,21 @@ Route::get('/customer/vouchers', [VoucherController::class, 'index'])
     ->middleware('auth')
     ->name('customer.vouchers');
 
-Route::get('/customer/voucher/use', function () {
-    return view('pages.customer.voucher.use');
-})->name('customer.voucher.use');
+// Route::get('/customer/voucher/use', function () {
+//     return view('pages.customer.voucher.use');
+// })->name('customer.voucher.use');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/customer/points', [PointsController::class, 'index'])
+        ->name('customer.points');
+});
+
+Route::post(
+    '/customer/voucher/use/{id}',
+    [CustomerVoucherController::class, 'use']
+)->name('customer.voucher.use');
+
+Route::post(
+    '/customer/voucher/cancel/{id}',
+    [CustomerVoucherController::class, 'cancel']
+)->name('customer.voucher.cancel');
