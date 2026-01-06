@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // --- Avatar preview ---
     const photoInput = document.getElementById('photo');
     const avatarPreview = document.getElementById('avatarPreview');
 

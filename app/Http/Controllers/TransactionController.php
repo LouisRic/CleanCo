@@ -15,11 +15,11 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = LaundryOrder::with(['account', 'laundryType'])
-                    ->where(function ($q) {
-                        $q->where('payment_status', '!=', 'paid')
-                          ->orWhere('laundry_status', '!=', 'completed')
-                          ->orWhere('pickup_status', '!=', 'picked_up');
-                    })->get();
+            ->where(function ($q) {
+                $q->where('payment_status', '!=', 'paid')
+                    ->orWhere('laundry_status', '!=', 'completed')
+                    ->orWhere('pickup_status', '!=', 'picked_up');
+            })->get();
 
         return view('admin.transactions.index', compact('transactions'));
     }
@@ -110,7 +110,7 @@ class TransactionController extends Controller
             'laundry_status'   => 'required|in:process,washed,ready,completed',
             'pickup_status'    => 'required|in:pending,picked_up',
         ]);
-        
+
         $type = LaundryType::findOrFail($request->laundry_type_id);
         $price_per_kg = $type->price_per_kg;
 
@@ -118,7 +118,7 @@ class TransactionController extends Controller
         $discount = 0;
         $voucherId = null;
         $customerVoucher = null;
-        
+
         if ($request->voucher_code) {
 
             // Cari voucher yg dimiliki customer & belum dipakai
@@ -161,13 +161,13 @@ class TransactionController extends Controller
         }
 
         $finalTotal = max(0, $subtotal - $discount);
-        
+
         $pickupDate = $request->pickup_date;
 
         if ($request->pickup_status === 'picked_up' && !$pickupDate) {
             $pickupDate = now()->toDateString();
         }
-        
+
         $order = LaundryOrder::create([
             'account_id'       => $request->account_id,
             'laundry_type_id'  => $request->laundry_type_id,
@@ -186,7 +186,21 @@ class TransactionController extends Controller
             'laundry_status'   => $request->laundry_status,
             'pickup_status'    => $request->pickup_status,
         ]);
-        
+
+        $account = $order->account; // relasi account di LaundryOrder
+        $pointsEarned = floor($order->weight_kg); // misal 1 kg = 1 point
+
+        if ($pointsEarned > 0) {
+            $balanceAfter = $account->points_balance + $pointsEarned;
+
+            $account->pointTransactions()->create([
+                'amount' => $pointsEarned,
+                'description' => 'Points dari order #' . $order->id,
+                'balance_after_transaction' => $balanceAfter,
+                'type' => 'earn',
+            ]);
+        }
+
         if ($customerVoucher) {
             $customerVoucher->update([
                 'is_redeemed'     => true,
