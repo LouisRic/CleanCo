@@ -1,13 +1,13 @@
 @extends('layout.masternosidebar')
-@section('title', 'Change Password')
-@section('page_title', 'Change Password')
+@section('title', __('profile_password.title'))
+@section('page_title', __('profile_password.title'))
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     <div class="edit-profile-container">
 
         <div class="edit-topbar">
-            <h2>Change Your Password Here!</h2>
+            <h2>{{ __('profile_password.heading') }}</h2>
         </div>
 
         <div class="edit-card">
@@ -16,7 +16,7 @@
                 @method('PUT')
 
                 <div class="form-group">
-                    <label>Current Password</label>
+                    <label>{{ __('profile_password.current_password') }}</label>
                     <input type="password" name="current_password">
                     @error('current_password')
                         <small class="error">{{ $message }}</small>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>New Password</label>
+                    <label>{{ __('profile_password.new_password') }}</label>
                     <input type="password" name="new_password">
                     @error('new_password')
                         <small class="error">{{ $message }}</small>
@@ -32,11 +32,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Confirm New Password</label>
+                    <label>{{ __('profile_password.confirm_new_password') }}</label>
                     <input type="password" name="new_password_confirmation">
                 </div>
 
-                <button type="submit" class="btn-update-password">Update Password</button>
+                <button type="submit" class="btn-update-password">{{ __('profile_password.update_password') }}</button>
             </form>
 
         </div>

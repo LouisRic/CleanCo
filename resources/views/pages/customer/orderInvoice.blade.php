@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice - {{ $order->id }}</title>
+    <title>{{ __('customer_invoice.title') }} - {{ $order->id }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/style-customer.css') }}">
@@ -30,11 +30,11 @@
                 </div>
                 <div class="invoice-order-info">
                     <div class="mb-2">
-                        <span class="info-label">Order ID</span>
+                        <span class="info-label">{{ __('customer_invoice.order_id') }}</span>
                         <div class="info-value">{{ $order->id }}</div>
                     </div>
                     <div>
-                        <span class="info-label">Date</span>
+                        <span class="info-label">{{ __('customer_invoice.date') }}</span>
                         <div class="info-value">{{ \Carbon\Carbon::parse($order->order_date)->format('d F Y') }}</div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
 
             <!-- Category Section -->
             <div class="invoice-category">
-                <span class="category-label">Category</span>
+                <span class="category-label">{{ __('customer_invoice.category') }}</span>
                 <div class="category-value">{{ $order->laundryType->name ?? 'Fast Laundry' }}</div>
             </div>
 
@@ -52,47 +52,47 @@
             <!-- Order Details -->
             <div class="invoice-details">
                 <div class="detail-row">
-                    <span class="detail-label">Amount per kg</span>
+                    <span class="detail-label">{{ __('customer_invoice.amount_per_kg') }}</span>
                     <span class="detail-value">Rp {{ number_format($order->price_per_kg, 0, ',', '.') }}</span>
                 </div>
                 <div class="detail-row">
-                    <span class="detail-label">Qty</span>
+                    <span class="detail-label">{{ __('customer_invoice.qty') }}</span>
                     <span class="detail-value">{{ $order->weight_kg }} kg</span>
                 </div>
                 <div class="detail-row">
-                    <span class="detail-label">For</span>
+                    <span class="detail-label">{{ __('customer_invoice.for') }}</span>
                     <span class="detail-value">Rp {{ number_format($order->total_price, 0, ',', '.') }}</span>
                 </div>
                 <div class="detail-row">
-                    <span class="detail-label">ACCT.</span>
+                    <span class="detail-label">{{ __('customer_invoice.account') }}</span>
                     <span class="detail-value">{{ $order->account_id }}</span>
                 </div>
                 <div class="detail-row align-items-center">
-                    <span class="detail-label">PAID</span>
+                    <span class="detail-label">{{ __('customer_invoice.paid') }}</span>
                     <div class="d-flex align-items-center gap-3">
                         <span class="detail-value">{{ ucfirst($order->payment_status) }}</span>
                         <div class="payment-methods d-flex gap-3">
                             <label class="payment-checkbox">
                                 <input type="checkbox" {{ $order->payment_status == 'paid' ? 'checked' : '' }} disabled>
-                                <span>Cash</span>
+                                <span>{{ __('customer_invoice.cash') }}</span>
                             </label>
                             <label class="payment-checkbox">
                                 <input type="checkbox" disabled>
-                                <span>Credit Card</span>
+                                <span>{{ __('customer_invoice.credit_card') }}</span>
                             </label>
                             <label class="payment-checkbox">
                                 <input type="checkbox" disabled>
-                                <span>E-Value</span>
+                                <span>{{ __('customer_invoice.e_value') }}</span>
                             </label>
                             <label class="payment-checkbox">
                                 <input type="checkbox" disabled>
-                                <span>Money Order</span>
+                                <span>{{ __('customer_invoice.money_order') }}</span>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="detail-row">
-                    <span class="detail-label">DUE</span>
+                    <span class="detail-label">{{ __('customer_invoice.due') }}</span>
                     <span class="detail-value">Rp {{ number_format($order->payment_status == 'paid' ? 0 : $order->total_price, 0, ',', '.') }}</span>
                 </div>
             </div>
@@ -101,14 +101,14 @@
             <div class="invoice-footer">
                 <div class="contact-item">
                     <i class="bi bi-geo-alt-fill"></i>
-                    <span>123 Cleanhouse Jakarta Barat</span>
+                    <span>{{ __('customer_invoice.address') }}</span>
                 </div>
                 <div class="contact-item">
                     <i class="bi bi-telephone-fill"></i>
                     <span>0825-4848-5766</span>
                 </div>
                 <div class="regards">
-                    <span>Regards, Admin</span>
+                    <span>{{ __('customer_invoice.regards') }}</span>
                 </div>
             </div>
 
