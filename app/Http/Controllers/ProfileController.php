@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\Account;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
-
-
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller

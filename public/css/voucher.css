@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eee;
+}
+
+/* HEADER */
+.header {
+    background: white;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.title {
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+    margin-right: 24px;
+}
+
+/* CONTENT */
+.content {
+    padding: 20px;
+}
+
+.voucher-card {
+    background: white;
+    width: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.voucher-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.voucher-body {
+    padding: 10px;
+    text-align: center;
+}
+
+.voucher-name {
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.btn-use {
+    background: #0d6efd;
+    color: white;
+    border-radius: 12px;
+    padding: 4px 12px;
+    font-size: 12px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal:target {
+    display: flex;
+}
+
+.modal-box {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 260px;
+    text-align: center;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.btn-outline {
+    border: 1px solid #0d6efd;
+    color: #0d6efd;
+    padding: 6px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.voucher-code {
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 8px;
+    margin-top: 8px;
+    font-weight: bold;
+}

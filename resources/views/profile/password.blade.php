@@ -1,4 +1,4 @@
-@extends('admin.layout.master')
+@extends('layout.masternosidebar')
 @section('title', 'Change Password')
 @section('page_title', 'Change Password')
 

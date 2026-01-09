@@ -18,12 +18,16 @@ class Account extends Authenticatable
         'address',
         'gender',
         'photo',
+        'password',
     ];
-    protected $hidden = ['password', 'remember_token'];
-
+    protected $hidden = ['password', 'remember_token', 'points_balance'];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function getPointsBalanceAttribute()
     {
-        return $value ?? 0;
+        return $this->pointTransactions()->sum('amount');
     }
 
     public function laundryOrders()

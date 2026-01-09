@@ -33,7 +33,6 @@ class PasswordController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        // Redirect ke profile show dengan pesan sukses
         return redirect()
             ->route('profile.show')
             ->with('success', 'Password updated successfully');

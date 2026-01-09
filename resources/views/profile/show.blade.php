@@ -1,7 +1,10 @@
-@extends('admin.layout.master')
+@extends('layout.masternosidebar')
 @section('title', 'Profile')
 @section('page_title', 'Profile')
 
+@php
+    $noSidebar = true;
+@endphp
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     @if (session('success'))

@@ -73,7 +73,9 @@
     <div style="display: flex;">
 
         <!-- Side Bar -->
-        @include('admin.layout.sidebar')
+        @if (!isset($noSidebar) || !$noSidebar)
+            @include('admin.layout.sidebar')
+        @endif
 
         <div style="flex-grow: 1;">
 
