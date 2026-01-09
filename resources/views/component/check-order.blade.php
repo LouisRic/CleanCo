@@ -3,8 +3,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 text-center">
                 
-                <h2 class="fw-bold text-dark mb-4">Check Your Order Status Here!</h2>
-                <p class="text-muted mb-3">Enter your Order ID (e.g., 1, 2, 3)</p>
+                <h2 class="fw-bold text-dark mb-4">{{ __('component_check.title') }}</h2>
+                <p class="text-muted mb-3">{{ __('component_check.subtitle') }}</p>
                 
                 <form action="" method="GET">
                     <div class="input-group">
@@ -12,13 +12,13 @@
                             type="number" 
                             name="invoice_code" 
                             class="form-control" 
-                            placeholder="Order ID (e.g., 1)"
+                            placeholder="{{ __('component_check.placeholder') }}"
                             min="1"
                             required
                         >
                         <button type="submit" class="btn btn-primary d-flex align-items-center gap-2">
                             <i class="bi bi-search"></i>
-                            <span>Search</span>
+                            <span>{{ __('component_check.search') }}</span>
                         </button>
                     </div>
                 </form>

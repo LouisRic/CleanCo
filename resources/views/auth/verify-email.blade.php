@@ -2,19 +2,19 @@
 <html>
 
 <head>
-    <title>Verify Email</title>
+    <title>{{ __('auth_verify_email.title') }}</title>
 </head>
 
 <body>
-    <h1>Verify Your Email Address</h1>
+    <h1>{{ __('auth_verify_email.heading') }}</h1>
 
     <p>
-        Before continuing, please check your email for a verification link.
+        {{ __('auth_verify_email.message') }}
     </p>
 
     <form method="POST" action="{{ route('verification.send') }}">
         @csrf
-        <button type="submit">Resend Verification Email</button>
+        <button type="submit">{{ __('auth_verify_email.resend') }}</button>
     </form>
 </body>
 

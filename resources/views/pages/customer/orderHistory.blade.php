@@ -16,7 +16,7 @@
             @empty
                 <div class="empty-state text-center py-5">
                     <i class="bi bi-inbox fs-1 text-muted"></i>
-                    <p class="text-muted mt-3">No order history yet</p>
+                    <p class="text-muted mt-3">{{ __('customer_check_order.no_order_history') }}</p>
                 </div>
             @endforelse
         </div>

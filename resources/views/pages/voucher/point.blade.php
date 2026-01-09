@@ -3,22 +3,22 @@
 @section('content')
     <div class="container mt-3">
 
-        <h5 class="fw-bold mb-3">My Points</h5>
+        <h5 class="fw-bold mb-3">{{ __('voucher.my_points') }}</h5>
 
         <div class="card shadow-sm border-0 mb-3">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <div>
-                    <span class="text-muted">Current Points</span>
+                    <span class="text-muted">{{ __('voucher.current_points') }}</span>
                     <h4 class="fw-bold mb-0">{{ $pointsBalance }}</h4>
                 </div>
 
                 <a href="{{ route('customer.vouchers') }}" class="btn btn-primary">
-                    Redeem Voucher
+                    {{ __('voucher.redeem_voucher') }}
                 </a>
             </div>
         </div>
 
-        <h6 class="fw-semibold mt-4 mb-2">Points History</h6>
+        <h6 class="fw-semibold mt-4 mb-2">{{ __('voucher.points_history') }}</h6>
 
         @forelse($transactions as $trx)
             <div class="card shadow-sm border-0 mb-2">
@@ -48,7 +48,7 @@
 
                         <div>
                             <small class="text-muted">
-                                Balance: {{ $trx->balance_after_transaction }}
+                                {{ __('voucher.balance') }}: {{ $trx->balance_after_transaction }}
                             </small>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
         @empty
 
             <div class="text-center text-muted mt-4">
-                No point transactions yet
+                {{ __('voucher.no_point_transactions') }}
             </div>
         @endforelse
 
