@@ -5,58 +5,78 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Voucher;
 use App\Models\CustomerVoucher;
+use Illuminate\Http\Request;
 
 class VoucherController extends Controller
 {
+    // Tampilkan semua voucher (admin)
     public function index()
     {
-        $user = Auth::user();
+        $vouchers = Voucher::all();
+        return view('admin.vouchers.index', compact('vouchers'));
+    }
 
-        // Ambil account
-        if ($user instanceof \App\Models\Account) {
-            $account = $user;
-        } elseif (method_exists($user, 'account')) {
-            $account = $user->account;
-        } else {
-            return redirect()
-                ->route('customer.points')
-                ->with('error', 'Akun pelanggan tidak ditemukan.');
-        }
+    // Form tambah voucher
+    public function create()
+    {
+        return view('admin.vouchers.create');
+    }
 
-        // Voucher yang sudah dimiliki customer & belum dipakai
-        $assignedVouchers = $account->customerVouchers()
-            ->where('is_redeemed', false)
-            ->with('voucher')
-            ->get();
+    // Simpan voucher baru
+    public function store(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|unique:vouchers,code|max:20',
+            'name' => 'required|max:255',
+            'type' => 'required|in:fixed,percentage',
+            'value' => 'required|numeric|min:0',
+            'minimum_spend' => 'nullable|numeric|min:0',
+            'points_required' => 'nullable|numeric|min:0',
+            'valid_from' => 'required|date',
+            'valid_until' => 'required|date|after_or_equal:valid_from',
+            'is_active' => 'required|boolean',
+        ]);
 
-        // Voucher points-only yang user bisa redeem
-        $pointVouchers = Voucher::where('points_required', '>', 0)
-            ->where('is_active', 1)
-            ->get()
-            ->filter(function ($v) use ($account) {
-                return $account->points_balance >= $v->points_required;
-            })
-            ->map(function ($v) {
-                // buat object mirip CustomerVoucher untuk display
-                return (object)[
-                    'id' => null,
-                    'voucher' => $v,
-                    'expires_at' => $v->valid_until,
-                    'is_redeemed' => false,
-                    'points_only' => true,
-                ];
-            });
+        Voucher::create($request->all());
 
-        // Gabungkan
-        $availableVouchers = $assignedVouchers->concat($pointVouchers);
+        return redirect()->route('vouchers.index')->with('success', 'Voucher berhasil ditambahkan!');
+    }
 
-        // Voucher yang sudah dipakai
-        $redeemedVouchers = $account->customerVouchers()
-            ->where('is_redeemed', true)
-            ->with('voucher')
-            ->latest('redeemed_at')
-            ->get();
+    // Form edit voucher
+    public function edit($id)
+    {
+        $voucher = Voucher::findOrFail($id);
+        return view('admin.vouchers.edit', compact('voucher'));
+    }
 
-        return view('pages.voucher.checkVoucher', compact('availableVouchers', 'redeemedVouchers'));
+    // Update voucher
+    public function update(Request $request, $id)
+    {
+        $voucher = Voucher::findOrFail($id);
+
+        $request->validate([
+            'code' => 'required|max:20|unique:vouchers,code,' . $voucher->id,
+            'name' => 'required|max:255',
+            'type' => 'required|in:fixed,percentage',
+            'value' => 'required|numeric|min:0',
+            'minimum_spend' => 'nullable|numeric|min:0',
+            'points_required' => 'nullable|numeric|min:0',
+            'valid_from' => 'required|date',
+            'valid_until' => 'required|date|after_or_equal:valid_from',
+            'is_active' => 'required|boolean',
+        ]);
+
+        $voucher->update($request->all());
+
+        return redirect()->route('vouchers.index')->with('success', 'Voucher berhasil diupdate!');
+    }
+
+    // Delete voucher
+    public function destroy($id)
+    {
+        $voucher = Voucher::findOrFail($id);
+        $voucher->delete();
+
+        return redirect()->route('vouchers.index')->with('success', 'Voucher berhasil dihapus!');
     }
 }

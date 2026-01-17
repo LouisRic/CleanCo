@@ -118,33 +118,40 @@ class TransactionController extends Controller
         $discount = 0;
         $voucherId = null;
         $customerVoucher = null;
-
         if ($request->voucher_code) {
-
-            // Cari voucher yg dimiliki customer & belum dipakai
-            $customerVoucher = CustomerVoucher::where('account_id', $request->account_id)
-                ->whereHas('voucher', function ($q) use ($request) {
-                    $q->where('code', strtoupper($request->voucher_code));
-                })
-                ->where('is_redeemed', false)
-                ->first();
-
-            if (!$customerVoucher) {
-                return back()->withErrors([
-                    'voucher_code' =>
-                    'Customer does not have this voucher or it has already been used.'
-                ]);
+            // Cari voucher berdasarkan kode
+            $voucher = Voucher::where('code', strtoupper($request->voucher_code))->first();
+            if (!$voucher) {
+                // kalau voucher belum ada, buat dulu (opsional)
+                return back()->withErrors(['voucher_code' => 'Voucher tidak ditemukan.']);
             }
 
-            $voucher = $customerVoucher->voucher;
+            // Tambahkan voucher ke customer jika belum punya
+            $customerVoucher = CustomerVoucher::firstOrCreate(
+                [
+                    'account_id' => $request->account_id,
+                    'voucher_id' => $voucher->id
+                ],
+                [
+                    'is_redeemed' => false
+                ]
+            );
+
             $today = now()->toDateString();
 
             // Cek kondisi valid
-            $isValid =
-                $voucher->is_active &&
-                $today >= $voucher->valid_from &&
-                $today <= $voucher->valid_until &&
-                $subtotal >= $voucher->minimum_spend;
+            if ($voucher->points_required > 0) {
+                // Voucher berbasis points
+                $user = Account::findOrFail($request->account_id);
+                $isValid = $user->points_balance >= $voucher->points_required;
+            } else {
+                // Voucher biasa untuk transaksi
+                $isValid =
+                    $voucher->is_active &&
+                    $today >= $voucher->valid_from &&
+                    $today <= $voucher->valid_until &&
+                    $subtotal >= $voucher->minimum_spend;
+            }
 
             if (!$isValid) {
                 return back()->withErrors(['voucher_code' => 'Voucher is not valid for this transaction.']);

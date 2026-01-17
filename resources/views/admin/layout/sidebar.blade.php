@@ -44,6 +44,11 @@
             👤 Profile
         </a>
 
+        <a href="{{ route('vouchers.index') }}"
+            class="sidebar-link {{ request()->is('admin/vouchers*') ? 'active' : '' }}">
+            🎁 Vouchers
+        </a>
+
         {{-- Logout --}}
         <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
             class="sidebar-logout">

@@ -13,20 +13,29 @@ class CustomerVoucherController extends Controller
     // Redeem voucher
     public function use($id)
     {
-        $user = Account::find(Auth::id());
+        $user = Account::findOrFail(Auth::id());
 
-        // Cek voucher id apakah CustomerVoucher atau Voucher langsung (points-only)
-        if (is_numeric($id)) {
-            $customerVoucher = CustomerVoucher::where('id', $id)
-                ->where('account_id', $user->id)
-                ->with('voucher')
-                ->first();
-        }
+        // Cek apakah ini voucher yang sudah dimiliki customer
+        $customerVoucher = CustomerVoucher::where('id', $id)
+            ->where('account_id', $user->id)
+            ->with('voucher')
+            ->first();
 
-        if (!$customerVoucher) {
-            // Cek voucher points-only
+        if ($customerVoucher) {
+            $voucher = $customerVoucher->voucher;
+
+            // Cek expired
+            if ($customerVoucher->expires_at && $customerVoucher->expires_at->isPast()) {
+                return back()->with('error', 'Voucher sudah kadaluarsa.');
+            }
+
+            // Cek sudah dipakai
+            if ($customerVoucher->is_redeemed) {
+                return back()->with('error', 'Voucher sudah digunakan.');
+            }
+        } else {
+            // Jika voucher points-only
             $voucher = Voucher::find($id);
-
             if (!$voucher || $voucher->points_required <= 0) {
                 return back()->with('error', 'Voucher tidak ditemukan.');
             }
@@ -36,34 +45,24 @@ class CustomerVoucherController extends Controller
                 return back()->with('error', 'Points tidak cukup untuk redeem voucher ini.');
             }
 
-            // Buat CustomerVoucher sementara
+            // Buat CustomerVoucher baru
             $customerVoucher = CustomerVoucher::create([
                 'account_id' => $user->id,
                 'voucher_id' => $voucher->id,
                 'expires_at' => $voucher->valid_until,
                 'is_redeemed' => false
             ]);
-        } else {
-            $voucher = $customerVoucher->voucher;
         }
 
-        // Cek expired
-        if ($customerVoucher->expires_at && $customerVoucher->expires_at->isPast()) {
-            return back()->with('error', 'Voucher sudah kadaluarsa.');
-        }
-
-        // Cek sudah dipakai
-        if ($customerVoucher->is_redeemed) {
-            return back()->with('error', 'Voucher sudah digunakan.');
-        }
-
-        // Deduct points
+        // Deduct points jika diperlukan
         if ($voucher->points_required > 0) {
-            $balanceAfter = $user->points_balance - $voucher->points_required;
+            $user->points_balance -= $voucher->points_required;
+            $user->save();
+
             $user->pointTransactions()->create([
                 'amount' => -$voucher->points_required,
                 'description' => 'Redeem voucher ' . $voucher->code,
-                'balance_after_transaction' => $balanceAfter,
+                'balance_after_transaction' => $user->points_balance,
                 'type' => 'redeem'
             ]);
         }
@@ -80,14 +79,14 @@ class CustomerVoucherController extends Controller
     // Cancel / revert voucher
     public function cancel($id)
     {
-        $user = Account::find(Auth::id());
+        $user = Account::findOrFail(Auth::id());
 
         $customerVoucher = CustomerVoucher::where('id', $id)
             ->where('account_id', $user->id)
             ->with('voucher')
             ->firstOrFail();
 
-        if (!$customerVoucher->redeemed_at) {
+        if (!$customerVoucher->is_redeemed) {
             return back()->with('error', 'Voucher belum digunakan.');
         }
 
@@ -97,21 +96,62 @@ class CustomerVoucherController extends Controller
 
         $voucher = $customerVoucher->voucher;
 
+        // Refund points jika ada
         if ($voucher->points_required > 0) {
-            $balanceAfter = $user->points_balance + $voucher->points_required;
+            $user->points_balance += $voucher->points_required;
+            $user->save();
+
             $user->pointTransactions()->create([
                 'amount' => $voucher->points_required,
                 'description' => 'Cancel redeem voucher ' . $voucher->code,
-                'balance_after_transaction' => $balanceAfter,
+                'balance_after_transaction' => $user->points_balance,
                 'type' => 'earn'
             ]);
         }
 
+        // Reset voucher status
         $customerVoucher->update([
             'is_redeemed' => 0,
             'redeemed_at' => null
         ]);
 
         return back()->with('success', 'Penggunaan voucher dibatalkan.');
+    }
+
+    public function index()
+    {
+        $user = Auth::user();
+
+        // Ambil semua voucher points aktif
+        $activePointVouchers = Voucher::where('is_active', 1)
+            ->where('points_required', '>', 0)
+            ->whereDate('valid_from', '<=', now())
+            ->whereDate('valid_until', '>=', now())
+            ->get();
+
+        // Buat record CustomerVoucher jika belum ada
+        foreach ($activePointVouchers as $voucher) {
+            CustomerVoucher::firstOrCreate([
+                'account_id' => $user->id,
+                'voucher_id' => $voucher->id
+            ]);
+        }
+
+        // Ambil semua voucher customer
+        $customerVouchers = CustomerVoucher::where('account_id', $user->id)
+            ->with('voucher')
+            ->get();
+
+        // Filter
+        $availableVouchers = $customerVouchers->filter(
+            fn($cv) =>
+            !$cv->is_redeemed &&
+                $cv->voucher->is_active &&
+                $cv->voucher->points_required > 0
+        );
+
+        $redeemedVouchers = $customerVouchers->filter(fn($cv) => $cv->is_redeemed);
+
+        return view('pages.voucher.checkVoucher', compact('availableVouchers', 'redeemedVouchers'));
     }
 }

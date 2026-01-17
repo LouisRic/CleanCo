@@ -12,7 +12,7 @@
                     <h4 class="fw-bold mb-0">{{ $pointsBalance }}</h4>
                 </div>
 
-                <a href="{{ route('customer.vouchers') }}" class="btn btn-primary">
+                <a href="{{ route('customer.voucher') }}" class="btn btn-primary">
                     {{ __('voucher.redeem_voucher') }}
                 </a>
             </div>

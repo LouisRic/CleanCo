@@ -12,32 +12,23 @@
                 <div class="card-body d-flex justify-content-between">
                     <div>
                         <div class="fw-bold">{{ $voucher->voucher->name }}</div>
-                        <small class="text-muted">{{ __('voucher.code') }}: {{ $voucher->voucher->code }}</small><br>
-                        <small class="text-muted">
-                            {{ __('voucher.valid_until') }}: {{ $voucher->expires_at?->format('d M Y') ?? '-' }}
+                        <small class="text-muted">Kode: {{ $voucher->voucher->code }}</small><br>
+                        <small class="text-info">
+                            Memerlukan {{ $voucher->voucher->points_required }} poin
                         </small>
-                        @if ($voucher->voucher->points_required > 0)
-                            <br><small class="text-info">
-                                {{ __('voucher.requires_points', ['points' => $voucher->voucher->points_required]) }}
-                            </small>
-                        @endif
                     </div>
-
                     <div class="text-end">
-                        <span class="badge bg-success mb-2">{{ __('voucher.not_used') }}</span><br>
-                        <button type="button" class="btn btn-primary btn-sm use-voucher-btn"
-                            data-id="{{ $voucher->voucher->id }}" data-name="{{ $voucher->voucher->name }}"
-                            data-points="{{ $voucher->voucher->points_required ?? 0 }}"
-                            data-expired="{{ $voucher->expires_at && $voucher->expires_at < now() ? 1 : 0 }}">
-                            {{ __('voucher.use_voucher') }}
-                        </button>
+                        <form action="{{ route('customer.voucher.use', $voucher->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                Gunakan
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         @empty
-            <div class="text-muted mt-2">
-                {{ __('voucher.no_active_vouchers') }}
-            </div>
+            <div class="text-muted mt-2">Tidak ada voucher aktif</div>
         @endforelse
 
         {{-- Redeemed Vouchers --}}
