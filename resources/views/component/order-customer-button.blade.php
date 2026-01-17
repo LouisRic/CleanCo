@@ -3,15 +3,14 @@
         <div class="col-6">
             <a href="{{ route('customer.check-order') }}" class="btn btn-primary btn-check-order w-100 py-3">
                 <i class="bi bi-search me-2"></i>
-                Check Your Order
+                {{ __('component_order.check_order') }}
             </a>
         </div>
         <div class="col-6">
             <a href="{{ route('customer.order-history') }}" class="btn btn-warning btn-order-history w-100 py-3">
                 <i class="bi bi-clock-history me-2"></i>
-                Order History
+                {{ __('component_order.order_history') }}
             </a>
         </div>
     </div>
 </div>
-
