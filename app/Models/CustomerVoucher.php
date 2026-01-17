@@ -13,7 +13,7 @@ class CustomerVoucher extends Model
     protected $casts = [
         'is_redeemed' => 'boolean',
         'redeemed_at' => 'datetime',
-        'expires_at' => 'date',
+        'expired_at' => 'date',
     ];
 
     public function account()
@@ -23,7 +23,7 @@ class CustomerVoucher extends Model
 
     public function voucher()
     {
-        return $this->belongsTo(Voucher::class);
+        return $this->belongsTo(Voucher::class, 'voucher_id');
     }
 
     public function laundryOrder()

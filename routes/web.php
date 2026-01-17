@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminVoucherController;
 use App\Http\Controllers\LaundryTypeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\CustomerController;
@@ -157,6 +158,9 @@ Route::middleware('auth')->group(function () {
         ->name('customer.points');
 });
 
+Route::get('/customer/vouchers', [VoucherController::class, 'index'])
+    ->name('customer.vouchers');
+
 Route::post(
     '/customer/voucher/use/{id}',
     [CustomerVoucherController::class, 'use']
@@ -166,3 +170,6 @@ Route::post(
     '/customer/voucher/cancel/{id}',
     [CustomerVoucherController::class, 'cancel']
 )->name('customer.voucher.cancel');
+
+Route::post('/admin/voucher/use-code', [AdminVoucherController::class, 'useByCode'])
+    ->name('admin.voucher.useCode');

@@ -35,6 +35,10 @@
     @include('layout.footer')
     {{-- supaya responsif --}}
     <script src="{{ asset('bootstrap-5.2-dist/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('js/voucher.js') }}"></script>
+
+    @yield('scripts')
 </body>
 
 </html>

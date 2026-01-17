@@ -23,37 +23,47 @@ class VoucherController extends Controller
                 ->with('error', 'Akun pelanggan tidak ditemukan.');
         }
 
-        // Voucher yang sudah dimiliki customer & belum dipakai
-        $assignedVouchers = $account->customerVouchers()
-            ->where('is_redeemed', false)
-            ->with('voucher')
+        // ✅ Assigned voucher yang sedang aktif (kode bisa dipakai admin)
+        $assignedVouchers = CustomerVoucher::with('voucher')
+            ->where('account_id', $account->id)
+            ->where('is_redeemed', 1)
             ->get();
 
-        // Voucher points-only yang user bisa redeem
+        // ✅ Points-only voucher
         $pointVouchers = Voucher::where('points_required', '>', 0)
             ->where('is_active', 1)
             ->get()
-            ->filter(function ($v) use ($account) {
-                return $account->points_balance >= $v->points_required;
-            })
-            ->map(function ($v) {
-                // buat object mirip CustomerVoucher untuk display
+            ->map(function ($v) use ($account) {
+
+                $existing = CustomerVoucher::where('account_id', $account->id)
+                    ->where('voucher_id', $v->id)
+                    ->latest('id')
+                    ->first();
+
+                // ✅ Patokan "sudah pernah tukar" = redeemed_at pernah ada (bukan is_redeemed)
+                $alreadyRedeemedEver = $existing?->redeemed_at !== null;
+
                 return (object)[
-                    'id' => null,
+                    'id' => $existing?->id,
                     'voucher' => $v,
-                    'expires_at' => $v->valid_until,
-                    'is_redeemed' => false,
+                    'expired_at' => $v->valid_until,
                     'points_only' => true,
+
+                    // dipakai untuk UI disable tombol
+                    'is_redeemed' => $alreadyRedeemedEver,
+
+                    // dipakai untuk UI disable kalau poin kurang
+                    'can_redeem' => ($account->points_balance >= $v->points_required) && !$alreadyRedeemedEver,
                 ];
             });
 
-        // Gabungkan
         $availableVouchers = $assignedVouchers->concat($pointVouchers);
 
-        // Voucher yang sudah dipakai
-        $redeemedVouchers = $account->customerVouchers()
-            ->where('is_redeemed', true)
-            ->with('voucher')
+        // ✅ Redeemed list: voucher yang sudah ditukar dan masih aktif (is_redeemed=1)
+        $redeemedVouchers = CustomerVoucher::with('voucher')
+            ->where('account_id', $account->id)
+            ->where('is_redeemed', 1)
+            ->whereNotNull('redeemed_at')
             ->latest('redeemed_at')
             ->get();
 
