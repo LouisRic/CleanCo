@@ -81,7 +81,7 @@
                 <div class="detail-item">
                     <strong>{{ __('component_order.transaction_history') }}</strong> 
                     <span class="badge {{ $order->payment_status == 'paid' ? 'bg-success' : 'bg-danger' }}">
-                        {{ ucfirst($order->payment_status) }}
+                        {{ __('status.payment.' . $order->payment_status) }}
                     </span>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                         @elseif($order->laundry_status == 'ready') bg-warning text-dark
                         @else bg-success
                         @endif">
-                        {{ ucfirst($order->laundry_status) }}
+                        {{ __('status.laundry.' . $order->laundry_status) }}
                     </span>
                     @if($order->pickup_status == 'pending')
                         <span class="badge bg-danger ms-2">{{ __('component_order.not_taken') }}</span>

@@ -4,8 +4,6 @@
 
                 <div class="hero-image-wrap">
                     <div class="blue-bg"></div>
-                    <img src="{{ asset('images/16851559_3gnh_opnj_210608-removebg-preview 2.png') }}"
-                        class="washing-machine" />
                     <img src="{{ asset('images/portrait-energetic-positive-cute-female-looking-directly-camera-with-happiness 1.svg') }}"
                         class="hero-woman" />
                     <div class="badge-wrapper">

@@ -212,11 +212,13 @@ body {
     left: 40%;
     z-index: 1000;
 }
+
 .badge-2 {
     top: 38%;
     left: 35%;
     z-index: 1000;
 }
+
 .badge-3 {
     top: 55%;
     left: 50%;
@@ -352,11 +354,9 @@ body {
     width: 100%;
     height: 190px;
 
-    background: linear-gradient(
-        to top,
-        rgba(255, 255, 255, 1) 40%,
-        rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(to top,
+            rgba(255, 255, 255, 1) 40%,
+            rgba(255, 255, 255, 0) 100%);
 
     z-index: 40;
     pointer-events: none;
@@ -400,9 +400,11 @@ body {
 .service-card:nth-child(1) {
     animation-delay: 0.2s;
 }
+
 .service-card:nth-child(2) {
     animation-delay: 0.4s;
 }
+
 .service-card:nth-child(3) {
     animation-delay: 0.6s;
 }
@@ -542,9 +544,11 @@ body {
 .hero-right h1 {
     animation-delay: 0.2s;
 }
+
 .hero-right p {
     animation-delay: 0.4s;
 }
+
 .hero-buttons button {
     animation-delay: 0.6s;
 }
@@ -565,20 +569,24 @@ body {
 }
 
 @keyframes floatHero {
+
     0%,
     100% {
         transform: translateY(0px);
     }
+
     50% {
         transform: translateY(-15px);
     }
 }
 
 @keyframes floatMachine {
+
     0%,
     100% {
         transform: translateY(0px);
     }
+
     50% {
         transform: translateY(-10px);
     }
@@ -593,9 +601,11 @@ body {
 .badge-1 {
     animation-delay: 0.5s;
 }
+
 .badge-2 {
     animation-delay: 0.8s;
 }
+
 .badge-3 {
     animation-delay: 1.2s;
 }
@@ -680,10 +690,12 @@ body {
 }
 
 @keyframes floatQR {
+
     0%,
     100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-8px);
     }
@@ -739,10 +751,12 @@ body {
 }
 
 @media (max-width: 900px) {
+
     .contact-left,
     .contact-right {
         width: 100%;
     }
+
     .social-links {
         justify-content: flex-start;
     }
@@ -860,9 +874,11 @@ body {
 .promo-banner {
     min-height: 200px;
 }
+
 .bg-orange {
     background-color: #fd7e14;
 }
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     width: 1.5rem;
@@ -1255,5 +1271,21 @@ body {
     .btn-order-history {
         font-size: 14px;
         padding: 12px !important;
+    }
+}
+
+@media (max-width: 768px){
+
+
+    .service-card{
+        padding: 16px;
+    }
+
+    .service-label{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 120px;
+        text-align: center;
     }
 }

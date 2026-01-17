@@ -27,7 +27,7 @@ return [
     'regular_laundry' => 'Regular Laundry',
     'premium_laundry' => 'Premium Laundry',
 
-    'only_1_day' => 'ONLY 1 Day',
+    'only_1_day' => 'ONLY 1  Day',
     'only_2_days' => 'ONLY 2 Days',
     'only_3_days' => 'ONLY 3 Days',
 
