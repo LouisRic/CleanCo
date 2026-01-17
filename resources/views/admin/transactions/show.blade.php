@@ -8,12 +8,12 @@
 
 <div class="card shadow-sm p-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3 class="m-0">
+    <div class="transaction-header mb-3">
+        <h3 class="mb-2 mb-md-0">
         {{__('admin_transactions_detail.order_code')}} <span style="color:red">#{{ $transaction->order_code }}</span>
         </h3>
 
-        <div class="d-flex gap-2">
+        <div class="transaction-status">
 
             {{-- Payment --}}
             <span class="badge px-3 py-2 fs-6
@@ -42,7 +42,7 @@
 
         </div>
 
-        <div class="mt-4">
+        <div class="transaction-buttons">
             <a href="{{ route('transactions.edit', $transaction->id) }}" class="btn btn-warning">✏ {{__('admin_transactions_detail.edit')}}</a>
 
             <!-- Delete Button Modal Trigger -->

@@ -2,8 +2,8 @@
 
 return [
 
-    'transactions' => 'Transaction Details',
-    'laundry_transactions' => 'Transaction Details',
+    'title' => 'Transaction Details',
+    'page_title' => 'Transaction Details',
 
     'edit' => 'Edit',
     'delete' => 'Delete',

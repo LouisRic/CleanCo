@@ -112,7 +112,7 @@
                                 placeholder="{{ __('auth.confirm_password') }}" required>
                         </div>
 
-                        <div class="text-end mb-3">
+                        <div class="text-center text-md-end mb-3">
                             <button type="submit" class="btn btn-orange">
                                 {{ __('auth.register_button') }}
                             </button>

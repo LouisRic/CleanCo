@@ -25,4 +25,39 @@ return [
     'confirm_voucher' => 'Konfirmasi Voucher',
     'cancel' => 'Batal',
     'confirm' => 'Konfirmasi',
+
+    'add_voucher' => 'Tambah Voucher',
+    'add_new_voucher' => 'Tambah Voucher Baru',
+    'voucher_management' => 'Manajemen Voucher',
+
+    'voucher_code' => 'Kode Voucher',
+    'voucher_name' => 'Nama Voucher',
+    'type' => 'Tipe',
+    'discount_value' => 'Nilai Diskon',
+    'minimum_purchase' => 'Minimum Pembelian (optional)',
+    'points_required' => 'Points Required (optional)',
+    'valid_from' => 'Berlaku Dari',
+    'valid_until' => 'Berlaku Sampai',
+    'active' => 'Aktif',
+
+    'fixed' => 'Fixed (Rp)',
+    'percentage' => 'Percentage (%)',
+
+    'yes' => 'Ya',
+    'no' => 'Tidak',
+
+    'save_voucher' => 'Simpan Voucher',
+    'update_voucher' => 'Update Voucher',
+
+    'code' => 'Kode',
+    'name' => 'Nama',
+    'value' => 'Nilai',
+    'minimum_spend' => 'Minimum Pembelian',
+    'action' => 'Aksi',
+
+    'edit_voucher' => 'Edit Voucher',
+    'delete_confirmation' => 'Konfirmasi Hapus',
+    'delete_question' => 'Apakah Anda yakin ingin menghapus voucher',
+    'cancel' => 'Batal',
+    'delete' => 'Hapus',
 ];
