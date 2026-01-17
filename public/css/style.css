@@ -1274,15 +1274,14 @@ body {
     }
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
+@media (max-width: 768px){
 
 
-    .service-card {
+    .service-card{
         padding: 16px;
     }
 
-    .service-label {
+    .service-label{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
