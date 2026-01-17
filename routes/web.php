@@ -85,6 +85,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         Route::delete('{id}/delete', [LaundryTypeController::class, 'destroy'])->name('services.delete');
     });
 
+
     Route::prefix('transactions')->group(function () {
         Route::get('', [TransactionController::class, 'index'])->name('transactions.index');
         Route::get('create', [TransactionController::class, 'create'])->name('transactions.create');
@@ -96,6 +97,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         Route::put('{id}', [TransactionController::class, 'update'])->name('transactions.update');
         Route::delete('{id}', [TransactionController::class, 'destroy'])->name('transactions.delete');
     });
+
 
     Route::prefix('reports')->group(function () {
         Route::get('', [ReportController::class, 'index'])->name('reports.index');
@@ -144,25 +146,28 @@ Route::put('/profile/password', [PasswordController::class, 'update'])->name('pr
 Route::get('/profile/language', [ProfileController::class, 'language'])
     ->name('profile.language');
 
-Route::get('/customer/vouchers', [VoucherController::class, 'index'])
-    ->middleware('auth')
-    ->name('customer.vouchers');
 
-// Route::get('/customer/voucher/use', function () {
-//     return view('pages.customer.voucher.use');
-// })->name('customer.voucher.use');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/customer/points', [PointsController::class, 'index'])
-        ->name('customer.points');
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('vouchers', [VoucherController::class, 'index'])->name('vouchers.index');
+    Route::get('vouchers/create', [VoucherController::class, 'create'])->name('vouchers.create');
+    Route::post('vouchers', [VoucherController::class, 'store'])->name('vouchers.store');
+    Route::get('vouchers/{id}/edit', [VoucherController::class, 'edit'])->name('vouchers.edit');
+    Route::put('vouchers/{id}', [VoucherController::class, 'update'])->name('vouchers.update');
+    Route::delete('vouchers/{id}', [VoucherController::class, 'destroy'])->name('vouchers.destroy');
 });
 
-Route::post(
-    '/customer/voucher/use/{id}',
-    [CustomerVoucherController::class, 'use']
-)->name('customer.voucher.use');
+Route::prefix('customer')->middleware(['auth', 'customer'])->group(function () {
+    // Dashboard, order, dll
+    Route::get('dashboard', [CustomerDashboardController::class, 'index'])->name('customer.dashboard');
+    Route::get('check-order', [CheckOrderController::class, 'index'])->name('customer.check-order');
+    Route::get('order-history', [OrderHistoryController::class, 'index'])->name('customer.order-history');
+    Route::get('order-invoice/{id}', [OrderInvoiceController::class, 'index'])->name('customer.order-invoice');
 
-Route::post(
-    '/customer/voucher/cancel/{id}',
-    [CustomerVoucherController::class, 'cancel']
-)->name('customer.voucher.cancel');
+    // Points
+    Route::get('points', [PointsController::class, 'index'])->name('customer.points');
+    Route::get('voucher', [CustomerVoucherController::class, 'index'])->name('customer.voucher');
+
+    Route::get('voucher', [CustomerVoucherController::class, 'index'])->name('customer.voucher');
+    Route::post('voucher/use/{id}', [CustomerVoucherController::class, 'use'])->name('customer.voucher.use');
+    Route::post('voucher/cancel/{id}', [CustomerVoucherController::class, 'cancel'])->name('customer.voucher.cancel');
+});

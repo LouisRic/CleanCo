@@ -1,0 +1,66 @@
+@extends('admin.layout.master')
+@section('title', 'Edit Voucher')
+@section('page_title', 'Edit Voucher')
+
+@section('content')
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $err)
+                    <li>{{ $err }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('vouchers.update', $voucher->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="mb-3">
+            <label>Kode Voucher</label>
+            <input type="text" name="code" class="form-control" value="{{ $voucher->code }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Nama Voucher</label>
+            <input type="text" name="name" class="form-control" value="{{ $voucher->name }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Tipe</label>
+            <select name="type" class="form-select" required>
+                <option value="fixed" {{ $voucher->type === 'fixed' ? 'selected' : '' }}>Fixed (Rp)</option>
+                <option value="percentage" {{ $voucher->type === 'percentage' ? 'selected' : '' }}>Percentage (%)</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Nilai Diskon</label>
+            <input type="number" name="value" class="form-control" step="0.01" value="{{ $voucher->value }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Minimum Pembelian (optional)</label>
+            <input type="number" name="minimum_spend" class="form-control" step="0.01"
+                value="{{ $voucher->minimum_spend }}">
+        </div>
+        <div class="mb-3">
+            <label>Points Required (optional)</label>
+            <input type="number" name="points_required" class="form-control" step="1"
+                value="{{ $voucher->points_required }}">
+        </div>
+        <div class="mb-3">
+            <label>Berlaku Dari</label>
+            <input type="date" name="valid_from" class="form-control" value="{{ $voucher->valid_from }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Berlaku Sampai</label>
+            <input type="date" name="valid_until" class="form-control" value="{{ $voucher->valid_until }}" required>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" name="is_active" value="1" class="form-check-input"
+                {{ $voucher->is_active ? 'checked' : '' }}>
+            <label class="form-check-label">Aktif</label>
+        </div>
+
+        <button class="btn btn-primary">Update Voucher</button>
+    </form>
+
+@endsection

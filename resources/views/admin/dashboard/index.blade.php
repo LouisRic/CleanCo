@@ -22,6 +22,12 @@
             </a>
         </div>
 
+        <div class="col-md-6">
+            <a href="{{ route('vouchers.create') }}" class="btn btn-warning w-100 py-3 fw-bold fs-5">
+                + {{ __('Add voucher') }}
+            </a>
+        </div>
+
         {{-- Row 1 --}}
         <div class="col-md-8">
             <div class="card shadow-sm border-1 rounded-3 bg-white">
